@@ -28,7 +28,7 @@ Once the EC2 instance is created and running. ssh into the EC2 instance
 sudo yum install -y git
 sudo amazon-linux-extras install epel -y
 sudo yum-config-manager --enable epel
-sudo yum install git-lfs
+sudo yum install -y git-lfs
 ```
 
 ### clone nitro-build repo
