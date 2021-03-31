@@ -23,9 +23,12 @@ create an Aws EC2 instance, choose the c5.xlarge host type and enable the Enclav
 
 Once the EC2 instance is created and running. ssh into the EC2 instance
 
-### Install git
+### Install git and git large file service (git-lfs)
 ```
 sudo yum install -y git
+sudo amazon-linux-extras install epel -y
+sudo yum-config-manager --enable epel
+sudo yum install git-lfs
 ```
 
 ### clone nitro-build repo
