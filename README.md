@@ -102,4 +102,6 @@ chmod +x ./parent-client.sh
 ./parent-client.sh
 ```
 
-Now, you can switch between two tmux session by press `ctrl+b n` to check logs. Make sure all three programs running ok.
+Now, you should see the promopt again. This promopt is the docker container's prompt. That means you are inside the docker container now.
+
+You can run provider_kvp or parent-instance-client for testing. You can also switch between two tmux session by press `ctrl+b n` to check logs. Make sure all three programs running ok.
