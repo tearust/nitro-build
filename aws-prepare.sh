@@ -3,22 +3,25 @@
 # install nitro cli related packages
 sudo amazon-linux-extras install aws-nitro-enclaves-cli -y
 sudo yum install aws-nitro-enclaves-cli-devel -y
+sudo yum -y install git
+sudo amazon-linux-extras install epel -y
+sudo yum-config-manager --enable epel
+sudo yum install -y git-lfs
 sudo yum -y install tmux
 sudo usermod -aG ne ec2-user
 sudo usermod -aG docker ec2-user
 sudo systemctl start nitro-enclaves-allocator.service && sudo systemctl enable nitro-enclaves-allocator.service
 sudo systemctl start docker && sudo systemctl enable docker
 
-if [ $1 = "dev" ]; then
+if [ -n $1 ] && [ $1 = "dev" ]; then
   # install general development related packages
   curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh -s -- -y
   source $HOME/.cargo/env
   rustup target add x86_64-unknown-linux-musl
   rustup target add wasm32-unknown-unknown
   sudo yum -y install gcc
-  sudo yum -y install git
 
-  if [ $2 = "enclave" ]; then
+  if [ -n $2 ] && [ $2 = "enclave" ]; then
     # install wascc related packages
     cargo install nkeys --features "cli"
     cargo install wascap --version ^0.5 --features "cli"

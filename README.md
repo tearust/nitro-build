@@ -23,13 +23,30 @@ create an Aws EC2 instance, choose the c5.xlarge host type and enable the Enclav
 
 Once the EC2 instance is created and running. ssh into the EC2 instance
 
-### Install git and git large file service (git-lfs)
+You can run the following command to prepare EC2 environment:
 ```
-sudo yum install -y git
-sudo amazon-linux-extras install epel -y
-sudo yum-config-manager --enable epel
-sudo yum install -y git-lfs
+curl -sSL https://raw.githubusercontent.com/tearust/nitro-build/main/aws-prepare.sh | sh
 ```
+
+and if you want to additionally prepare vmh-server related compilation enviroment, please run the following command:
+```
+curl -sSL https://raw.githubusercontent.com/tearust/nitro-build/main/aws-prepare.sh | sh -s -- dev
+```
+
+and if you want to additionally prepare enclave-app related compilation enviroment, please run the following command:
+```
+curl -sSL https://raw.githubusercontent.com/tearust/nitro-build/main/aws-prepare.sh | sh -s -- dev enclave
+```
+
+press Ctrl+D to quit ssh connection to apply those configuration settings take effect.
+
+### Use tmux for multiple shell running
+
+ssh into the EC2 instance again. This time, all config should take effect.
+
+tmux can help you handle the multiple shells in the following steps.
+
+run `tmux` or `tmux a` if you already have a tmux session
 
 ### clone nitro-build repo
 
@@ -38,23 +55,6 @@ git clone https://github.com/tearust/nitro-build
 ```
 
 Once done, enter the code repo by `cd nitro-build`
-
-### Init aws nitro environment
-
-run 
-```
-./aws-prepare.sh
-```
-
-press Ctrl+D to quit ssh connection to apply those configuration settings take effect.
-
-### Use tnux for multiple shell running
-
-ssh into the EC2 instance again. This time, all config should take effect.
-
-tmux can help you handle the multiple shells in the following steps.
-
-run `tmux` or `tmux a` if you already have a tmux session
 
 ### initialize enclave environment
 
