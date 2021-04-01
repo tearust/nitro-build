@@ -110,7 +110,7 @@ You can run provider_kvp or parent-instance-client for testing. You can also swi
 ### create new instance
 Run the following command to create a new instance:
 ```
-./aws-tool.sh create [image-id] [key-name]
+./aws-tool.sh create [image-id] [key-name] [security-group-id]
 ```
 
 ### ssh into instance

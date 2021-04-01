@@ -1,14 +1,14 @@
 #!/bin/sh
 
-if [ $1 = "id" ]; then
-	aws ec2 describe-instances | jq '.Reservations[0].Instances[0].InstanceId'
+if [ $1 = "ids" ]; then
+	aws ec2 describe-instances | jq '.Reservations[0].Instances[] | "\(.InstanceId) \(.State.Name)"'
 elif [ $1 = "dns" ]; then
-	aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[0].Association.PublicDnsName'
+	aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[] | "\(.Attachment.InstanceId) \(.Association.PublicDnsName)"'
 elif [ $1 = "create" ]; then
-	if [ -z "$3" ]; then
-		aws ec2 run-instances --image-id ami-07464b2b9929898f8 --count 1 --instance-type c5.xlarge --key-name aws-tea-northeast2 --enclave-options 'Enabled=true'
+	if [ -z "$4" ]; then
+		aws ec2 run-instances --image-id ami-07464b2b9929898f8 --count 1 --instance-type c5.xlarge --key-name aws-tea-northeast2 --security-group-ids sg-a96a74d2 --enclave-options 'Enabled=true'
 	else
-		aws ec2 run-instances --image-id $2 --count 1 --instance-type c5.xlarge --key-name $3 --enclave-options 'Enabled=true'
+		aws ec2 run-instances --image-id $2 --count 1 --instance-type c5.xlarge --key-name $3 --security-group-ids $4 --enclave-options 'Enabled=true'
 	fi
 elif [ $1 = "terminate" ]; then
 	set +x
