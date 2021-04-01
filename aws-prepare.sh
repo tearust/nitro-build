@@ -10,6 +10,7 @@ sudo yum install -y git-lfs
 sudo yum -y install tmux
 sudo usermod -aG ne ec2-user
 sudo usermod -aG docker ec2-user
+sudo curl https://raw.githubusercontent.com/tearust/nitro-build/main/allocator.yaml -o /etc/nitro_enclaves/allocator.yaml
 sudo systemctl start nitro-enclaves-allocator.service && sudo systemctl enable nitro-enclaves-allocator.service
 sudo systemctl start docker && sudo systemctl enable docker
 
