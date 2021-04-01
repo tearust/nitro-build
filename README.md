@@ -105,3 +105,23 @@ chmod +x ./parent-client.sh
 Now, you should see the promopt again. This promopt is the docker container's prompt. That means you are inside the docker container now.
 
 You can run provider_kvp or parent-instance-client for testing. You can also switch between two tmux session by press `ctrl+b n` to check logs. Make sure all three programs running ok.
+
+## Use aws-tool.sh to create EC2 instance
+### create new instance
+Run the following command to create a new instance:
+```
+./aws-tool.sh create [image-id] [key-name]
+```
+
+### ssh into instance
+Run the following command to ssh into the created instance:
+```
+./aws-tool.sh ssh [pem key path]
+```
+Note that the [pem key path] is corresponding with [key-name] in the create new instance step
+
+### terminate instance
+Run the following command to terminate the instance:
+```
+./aws-tool.sh terminate
+```
