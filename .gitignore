@@ -1,3 +1,9 @@
 *.log
 *.eif
 *.tar
+vmh-server
+parent-instance-client
+provider_kvp
+*.so
+vwh-server
+actor_utility_ipfs
