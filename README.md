@@ -112,16 +112,55 @@ Run the following command to create a new instance:
 ```
 ./aws-tool.sh create [image-id] [key-name] [security-group-id]
 ```
+Here are the descriptions about parameters with `create` subcommand:
+- [image-id]: (optional) image id that EC2 instance OS system installed from, default is "ami-07464b2b9929898f8" whith is only avaliable in the northeast2 region
+- [key-name]: (optional) the key name create in KMS, default is "aws-tea-northeast2" that is the key name created in my KMS.
+- [security-group-id]: (optional) the id about the security group you want your EC2 instance apply to, default is "sg-a96a74d2" that is my security group id
 
-### ssh into instance
+### push resources into EC2 instance
+Run the following command to push resources into EC2 instance:
+```
+./aws-tool.sh push [pem key path] [push mode] [dns or ip address]
+```
+Here are the descriptions about parameters with `push` subcommand:
+- [pem key path]: (optional) corresponding with [key-name] in the create new instance step, default value is "~/.ssh/aws-tea-northeast2.pem" that is my pem file path
+- [push mode]: (optional) value can be `all`, `script`, `client`, and `vmh`, default is `all` that pull all resources into EC2 instance
+- [dns or ip address]: (optional) the host address that ssh connect to, default is queried by `aws ec2 describe-network-interfaces` and parsed from the query result
+
+### prepare EC environment
+After pushed resources into EC2 instance, run the following command to prepare EC2 instance:
+```
+./aws-tool.sh install [pem key path] [dns or ip address]
+```
+Here are the descriptions about parameters with `install` subcommand:
+- [pem key path]: (optional) corresponding with [key-name] in the create new instance step, default value is "~/.ssh/aws-tea-northeast2.pem" that is my pem file path
+- [dns or ip address]: (optional) the host address that ssh connect to, default is queried by `aws ec2 describe-network-interfaces` and parsed from the query result
+
+### ssh into EC2 instance
 Run the following command to ssh into the created instance:
 ```
-./aws-tool.sh ssh [pem key path]
+./aws-tool.sh ssh [pem key path] [dns or ip address]
 ```
-Note that the [pem key path] is corresponding with [key-name] in the create new instance step
+Here are the descriptions about parameters with `ssh` subcommand:
+- [pem key path]: (optional) corresponding with [key-name] in the create new instance step, default value is "~/.ssh/aws-tea-northeast2.pem" that is my pem file path
+- [dns or ip address]: (optional) the host address that ssh connect to, default is queried by `aws ec2 describe-network-interfaces` and parsed from the query result
 
 ### terminate instance
 Run the following command to terminate the instance:
 ```
-./aws-tool.sh terminate
+./aws-tool.sh terminate [instance ids]
+```
+Here are the descriptions about parameters with `terminate` subcommand:
+- [instance ids]: (optional) id of the EC2 instance to be terminated, default is the first instance id queried by `aws ec2 describe-instances` command
+
+### list all EC2 instances
+Run the following command to list all EC2 instances ids and corresponding status:
+```
+./aws-tool.sh ids
+```
+
+### list all EC2 dns addresses
+Run the following command to list all EC2 instances ids and corresponding dns addresses:
+```
+./aws-tool.sh dns
 ```
