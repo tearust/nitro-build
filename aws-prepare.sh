@@ -4,9 +4,6 @@
 sudo amazon-linux-extras install aws-nitro-enclaves-cli -y
 sudo yum install aws-nitro-enclaves-cli-devel -y
 sudo yum -y install git
-sudo amazon-linux-extras install epel -y
-sudo yum-config-manager --enable epel
-sudo yum install -y git-lfs
 sudo yum -y install tmux
 sudo usermod -aG ne ec2-user
 sudo usermod -aG docker ec2-user
