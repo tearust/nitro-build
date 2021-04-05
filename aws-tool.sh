@@ -72,6 +72,8 @@ function scp_with() {
     scp -i "$PEM_PATH" `scp_files` ec2-user@${DNS_NAME}:~
 }
 
+set -e
+
 if [ $1 = "ids" ]; then
     aws ec2 describe-instances | jq '.Reservations[].Instances[] | "\(.InstanceId) \(.State.Name)"'
 elif [ $1 = "dns" ]; then
@@ -83,13 +85,11 @@ elif [ $1 = "create" ]; then
         aws ec2 run-instances --image-id $2 --count 1 --instance-type c5.xlarge --key-name $3 --security-group-ids $4 --enclave-options 'Enabled=true'
     fi
 elif [ $1 = "terminate" ]; then
-    set +x
     if [ -z "$2" ]; then
         aws ec2 describe-instances | jq '.Reservations[0].Instances[0].InstanceId' | xargs aws ec2 terminate-instances --instance-ids
     else
         aws ec2 terminate-instances --instance-ids $2
     fi
-    set -x
 elif [ $1 = "ssh" ]; then
     PEM_PATH=$2
     DNS_NAME=$3
@@ -113,4 +113,8 @@ elif [ $1 = "install" ]; then
 
     SSH_CMD="sh ./aws-prepare.sh"
     ssh_with
+else
+    echo "unknown command. Supported subcommand: ids, dns, create, terminate, ssh, push, install"
 fi
+
+set +e
