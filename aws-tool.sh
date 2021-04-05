@@ -59,6 +59,19 @@ function scp_files() {
     echo $retval
 }
 
+function ssh_with() {
+    : ${PEM_PATH:="~/.ssh/aws-tea-northeast2.pem"}
+    : ${DNS_NAME:=`aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[0].Association.PublicDnsName'`}
+    ssh -i "${PEM_PATH}" "ec2-user@${DNS_NAME}" $SSH_CMD
+}
+
+function scp_with() {
+    : ${PEM_PATH:="~/.ssh/aws-tea-northeast2.pem"}
+    : ${DNS_NAME:=`aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[0].Association.PublicDnsName'`}
+
+    scp -i "$PEM_PATH" `scp_files` ec2-user@${DNS_NAME}:~
+}
+
 if [ $1 = "ids" ]; then
     aws ec2 describe-instances | jq '.Reservations[].Instances[] | "\(.InstanceId) \(.State.Name)"'
 elif [ $1 = "dns" ]; then
@@ -78,41 +91,26 @@ elif [ $1 = "terminate" ]; then
     fi
     set -x
 elif [ $1 = "ssh" ]; then
-    set +x
-    DNS_NAME=`aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[0].Association.PublicDnsName'`
-    if [ -n "$3" ]; then
-        ssh -i "$2" ec2-user@$3
-    elif [ -n "$2" ]; then
-        ssh -i "$2" ec2-user@${DNS_NAME}
-    else
-        ssh -i "~/.ssh/aws-tea-northeast2.pem" "ec2-user@${DNS_NAME}"
-    fi
-    set -x
+    PEM_PATH=$2
+    DNS_NAME=$3
+
+    SSH_CMD=""
+    ssh_with
 elif [ $1 = "push" ]; then
-    tar_files
+    PEM_PATH=$2
     TAR_FILE_MODE=$3
+    DNS_NAME=$4
     : ${TAR_FILE_MODE:="all"}
 
-    DNS_NAME=`aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[0].Association.PublicDnsName'`
     SSH_CMD=$( untar_files )
-    if [ -n "$4" ]; then
-        scp -i "$2" `scp_files` ec2-user@$4:~
-        ssh -i "$2" ec2-user@$4 "$SSH_CMD"
-    elif [ -n "$2" ]; then
-        scp -i "$2" `scp_files` ec2-user@${DNS_NAME}:~
-        ssh -i "$2" ec2-user@${DNS_NAME} "$SSH_CMD"
-    else
-        scp -i "~/.ssh/aws-tea-northeast2.pem" `scp_files` "ec2-user@${DNS_NAME}":~
-        ssh -i "~/.ssh/aws-tea-northeast2.pem" "ec2-user@${DNS_NAME}" "$SSH_CMD"
-    fi
+
+    tar_files
+    scp_with
+    ssh_with
 elif [ $1 = "install" ]; then
-    DNS_NAME=`aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[0].Association.PublicDnsName'`
+    PEM_PATH=$2
+    DNS_NAME=$3
+
     SSH_CMD="sh ./aws-prepare.sh"
-    if [ -n "$3" ]; then
-        ssh -i "$2" ec2-user@$3 $SSH_CMD
-    elif [ -n "$2" ]; then
-        ssh -i "$2" ec2-user@${DNS_NAME} $SSH_CMD
-    else
-        ssh -i "~/.ssh/aws-tea-northeast2.pem" "ec2-user@${DNS_NAME}" $SSH_CMD
-    fi
+    ssh_with
 fi
