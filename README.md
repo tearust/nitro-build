@@ -87,14 +87,6 @@ After ssh into the EC2 instance, run tmux to help you handle the multiple shells
 
 run `tmux` or `tmux a` if you already have a tmux session
 
-### clone nitro-build repo
-
-```
-git clone https://github.com/tearust/nitro-build
-```
-
-Once done, enter the code repo by `cd nitro-build`
-
 ### build enclave image
 
 ```
