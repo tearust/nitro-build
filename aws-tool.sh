@@ -26,9 +26,9 @@ function tar_files() {
 function untar_files() {
     retval=""
 
-    SCRIPT_FILES="tar xzf $SCRIPT_TAR --directory nitro-build"
-    CLINET_FILES="tar xzf $CLIENT_TAR --directory nitro-build"
-    VMH_FILES="tar xzf $VMH_TAR --directory nitro-build"
+    SCRIPT_FILES="tar xzf $SCRIPT_TAR"
+    CLINET_FILES="tar xzf $CLIENT_TAR"
+    VMH_FILES="tar xzf $VMH_TAR"
 
     if [ $TAR_FILE_MODE = "all" ]; then
         retval="$SCRIPT_FILES && $CLINET_FILES && $VMH_FILES"
@@ -97,17 +97,17 @@ elif [ $1 = "push" ]; then
     SSH_CMD=$( untar_files )
     if [ -n "$4" ]; then
         scp -i "$2" `scp_files` ec2-user@$4:~
-        ssh -i "$2" ec2-user@$4 "mkdir -p nitro-build && $SSH_CMD"
+        ssh -i "$2" ec2-user@$4 "$SSH_CMD"
     elif [ -n "$2" ]; then
         scp -i "$2" `scp_files` ec2-user@${DNS_NAME}:~
-        ssh -i "$2" ec2-user@${DNS_NAME} "mkdir -p nitro-build && $SSH_CMD"
+        ssh -i "$2" ec2-user@${DNS_NAME} "$SSH_CMD"
     else
         scp -i "~/.ssh/aws-tea-northeast2.pem" `scp_files` "ec2-user@${DNS_NAME}":~
-        ssh -i "~/.ssh/aws-tea-northeast2.pem" "ec2-user@${DNS_NAME}" "mkdir -p nitro-build && $SSH_CMD"
+        ssh -i "~/.ssh/aws-tea-northeast2.pem" "ec2-user@${DNS_NAME}" "$SSH_CMD"
     fi
 elif [ $1 = "install" ]; then
     DNS_NAME=`aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[0].Association.PublicDnsName'`
-    SSH_CMD="sh nitro-build/aws-prepare.sh"
+    SSH_CMD="sh ./aws-prepare.sh"
     if [ -n "$3" ]; then
         ssh -i "$2" ec2-user@$3 $SSH_CMD
     elif [ -n "$2" ]; then
