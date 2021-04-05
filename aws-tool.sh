@@ -31,13 +31,13 @@ function untar_files() {
     VMH_FILES="tar xzf $VMH_TAR"
 
     if [ $TAR_FILE_MODE = "all" ]; then
-        retval="$SCRIPT_FILES && $CLINET_FILES && $VMH_FILES"
+        retval="$SCRIPT_FILES && $CLINET_FILES && $VMH_FILES && rm $SCRIPT_TAR $CLIENT_TAR $VMH_TAR"
     elif [ $TAR_FILE_MODE = "script" ]; then
-        retval="$SCRIPT_FILES"
+        retval="$SCRIPT_FILES && rm $SCRIPT_TAR"
     elif [ $TAR_FILE_MODE = "client" ]; then
-        retval="$CLINET_FILES"
+        retval="$CLINET_FILES && rm $CLIENT_TAR"
     elif [ $TAR_FILE_MODE = "vmh" ]; then
-        retval="$VMH_FILES"
+        retval="$VMH_FILES && rm $VMH_TAR"
     fi
 
     echo $retval
