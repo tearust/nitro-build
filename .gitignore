@@ -3,7 +3,7 @@
 *.tar
 vmh-server
 parent-instance-client
-provider_kvp
+provider_*
+actor_*
 *.so
 vwh-server
-actor_utility_ipfs
