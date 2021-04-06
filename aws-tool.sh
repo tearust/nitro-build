@@ -91,12 +91,15 @@ elif [ $1 = "terminate" ]; then
         aws ec2 terminate-instances --instance-ids $2
     fi
 elif [ $1 = "ssh" ]; then
+    set -x
     PEM_PATH=$2
     DNS_NAME=$3
 
     SSH_CMD=""
     ssh_with
+    set +x
 elif [ $1 = "push" ]; then
+    set -x
     PEM_PATH=$2
     TAR_FILE_MODE=$3
     DNS_NAME=$4
@@ -107,12 +110,15 @@ elif [ $1 = "push" ]; then
     tar_files
     scp_with
     ssh_with
+    set +x
 elif [ $1 = "install" ]; then
+    set -x
     PEM_PATH=$2
     DNS_NAME=$3
 
     SSH_CMD="sh ./aws-prepare.sh"
     ssh_with
+    set +x
 else
     echo "unknown command. Supported subcommand: ids, dns, create, terminate, ssh, push, install"
 fi
