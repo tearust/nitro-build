@@ -7,3 +7,5 @@ provider_*
 actor_*
 *.so
 vwh-server
+*.wasm
+cids.txt
