@@ -134,3 +134,30 @@ press Ctrl+B + C to create a new tmux tab page or Ctrl+B + N to switch to the cl
 Now, you should see the promopt again. This promopt is the docker container's prompt. That means you are inside the docker container now.
 
 You can run provider_kvp or parent-instance-client for testing. You can also switch between two tmux session by press `ctrl+b n` to check logs. Make sure all three programs running ok.
+
+## use ipfs.sh to build ipfs image
+### compile ipfs executable
+
+use the following command to compile ipfs executable:
+```
+./ipfs.sh compile
+```
+after compile there will be two executable in the ipfs subdirectory:
+- ipfs: executable for running natively
+- ipfs-linux: executable for package into docker image 
+
+### build docker images
+use the following command to build ipfs docker image:
+```
+./ipfs.sh build [dockerhub account]
+```
+Here are the descriptions about parameters with `build` subcommand:
+- [dockerhub account]: (optional) docker-hub account that push the docker image into
+
+### run docker container
+use the following command to run the ipfs docker container:
+```
+./ipfs.sh run [dockerhub account]
+```
+Here are the descriptions about parameters with `build` subcommand:
+- [dockerhub account]: (optional) docker-hub account that will pull the docker image

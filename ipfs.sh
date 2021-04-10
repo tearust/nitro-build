@@ -48,10 +48,11 @@ elif [ $1 = "build" ]; then
     cp ../Dockerfile .
     cp ../ipfs-linux ipfs/ipfs # replace ipfs exe
     docker build --tag ${DOCKERHUB_ACCOUNT}/ipfs:0.8.0 .
+    docker push ${DOCKERHUB_ACCOUNT}/ipfs:0.8.0
 
     cd ..
 elif [ $1 = "run" ]; then
-    docker run -d --network host ${DOCKERHUB_ACCOUNT}/ipfs:0.8.0
+    docker run -d --network host --name ipfs ${DOCKERHUB_ACCOUNT}/ipfs:0.8.0
 fi
 
 set +e
