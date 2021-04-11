@@ -26,7 +26,7 @@ elif [ $1 = "build" ]; then
     rm -rf docker
     mkdir -p docker/ipfs
     cd docker/ipfs
-    # make sure you have run the `compile` subcommand or copied ipfs exe somewhere eles
+    # make sure you have run the `compile` subcommand or copied ipfs exe somewhere else
     cp ../../ipfs .
     
     # prepare ipfs related
@@ -40,11 +40,11 @@ elif [ $1 = "build" ]; then
     if [ -d "$CIDS_FILE" ] ; then
         rm $CIDS_FILE
     fi
-    CID=`./ipfs block put ../../../intercom_actor_signed.wasm`
-    echo "intercom_actor_signed.wasm" > $CIDS_FILE
+    echo "tea_ra_signed.wasm" > $CIDS_FILE
+    CID=`./ipfs block put ../../../tea_ra_signed.wasm`
     echo "$CID" >> $CIDS_FILE
-    CID=`./ipfs block put ../../../intercom_binding.json`
-    echo "intercom_binding.json" >> $CIDS_FILE
+    echo "tea_ra.binding.json" >> $CIDS_FILE
+    CID=`./ipfs block put ../../../tea_ra.binding.json`
     echo "$CID" >> $CIDS_FILE
 
     # build ipfs docker image
