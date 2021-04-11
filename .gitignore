@@ -9,3 +9,4 @@ actor_*
 vwh-server
 *.wasm
 cids.txt
+intercom_binding.json

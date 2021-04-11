@@ -41,7 +41,11 @@ elif [ $1 = "build" ]; then
         rm $CIDS_FILE
     fi
     CID=`./ipfs block put ../../../intercom_actor_signed.wasm`
-    echo "$CID" > $CIDS_FILE
+    echo "intercom_actor_signed.wasm" > $CIDS_FILE
+    echo "$CID" >> $CIDS_FILE
+    CID=`./ipfs block put ../../../intercom_binding.json`
+    echo "intercom_binding.json" >> $CIDS_FILE
+    echo "$CID" >> $CIDS_FILE
 
     # build ipfs docker image
     cd ..
