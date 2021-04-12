@@ -7,7 +7,7 @@ VMH_TAR="vmh.tar"
 
 function tar_files() {
     SCRIPT_FILES="$SCRIPT_TAR *.sh *.yaml"
-    CLINET_FILES="$CLIENT_TAR parent-instance-client provider_kvp provider_nitro actor_utility_ipfs"
+    CLINET_FILES="$CLIENT_TAR parent-instance-client provider_kvp provider_nitro provider_crypto actor_utility_ipfs"
     VMH_FILES="$VMH_TAR vmh-server"
 
     if [ $TAR_FILE_MODE = "all" ]; then
