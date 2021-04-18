@@ -4,6 +4,7 @@ TAR_FILE_MODE="all"
 SCRIPT_TAR="script.tar"
 CLIENT_TAR="client.tar"
 VMH_TAR="vmh.tar"
+SINGLE_TAR="single.tar"
 
 function tar_files() {
     SCRIPT_FILES="$SCRIPT_TAR *.sh *.yaml"
@@ -84,7 +85,9 @@ function scp_single() {
     : ${PEM_PATH:="~/.ssh/aws-tea-northeast2.pem"}
     : ${DNS_NAME:=`aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[0].Association.PublicDnsName'`}
 
-    scp -i "$PEM_PATH" $SINGLE_FILE ec2-user@${DNS_NAME}:~
+    tar czf ${SINGLE_TAR} ${SINGLE_FILE}
+    scp -i "${PEM_PATH}" ${SINGLE_TAR} ec2-user@${DNS_NAME}:~
+    ssh -i "${PEM_PATH}" "ec2-user@${DNS_NAME}" "tar xzf ${SINGLE_TAR}"
 }
 
 set -e
@@ -135,6 +138,8 @@ elif [ $1 = "single" ]; then
     DNS_NAME=$4
 
     scp_single
+
+    echo "done!"
 elif [ $1 = "install" ]; then
     PEM_PATH=$2
     DNS_NAME=$3
