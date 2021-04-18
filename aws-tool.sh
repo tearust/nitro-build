@@ -80,6 +80,13 @@ function scp_with() {
     scp -i "$PEM_PATH" `scp_files` ec2-user@${DNS_NAME}:~
 }
 
+function scp_single() {
+    : ${PEM_PATH:="~/.ssh/aws-tea-northeast2.pem"}
+    : ${DNS_NAME:=`aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[0].Association.PublicDnsName'`}
+
+    scp -i "$PEM_PATH" $SINGLE_FILE ec2-user@${DNS_NAME}:~
+}
+
 set -e
 
 if [ $1 = "ids" ]; then
@@ -122,6 +129,12 @@ elif [ $1 = "push" ]; then
     ssh_with
 
     echo "done!"
+elif [ $1 = "single" ]; then
+    SINGLE_FILE=$2
+    PEM_PATH=$3
+    DNS_NAME=$4
+
+    scp_single
 elif [ $1 = "install" ]; then
     PEM_PATH=$2
     DNS_NAME=$3
