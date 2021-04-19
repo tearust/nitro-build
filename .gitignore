@@ -3,6 +3,7 @@
 *.tar
 vmh-server
 parent-instance-client
+rpc_adapter_server
 provider_*
 actor_*
 *.so
