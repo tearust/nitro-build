@@ -70,6 +70,8 @@ function tunnel_with() {
     : ${PEM_PATH:="~/.ssh/aws-tea-northeast2.pem"}
     : ${DNS_NAME:=`aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[0].Association.PublicDnsName'`}
     ssh -i "${PEM_PATH}" \
+        -L 8000:127.0.0.1:8000 \
+        -L 5010:127.0.0.1:5010 \
         -L 5011:127.0.0.1:5011 \
         -N -T "ec2-user@${DNS_NAME}"
 }
