@@ -8,7 +8,7 @@ SINGLE_TAR="single.tar"
 
 function tar_files() {
     SCRIPT_FILES="$SCRIPT_TAR *.sh *.yaml"
-    CLINET_FILES="$CLIENT_TAR parent-instance-client provider_kvp provider_nitro provider_crypto actor_utility_ipfs actor_utility_rpc"
+    CLINET_FILES="$CLIENT_TAR parent-instance-client provider_kvp provider_nitro provider_crypto actor_utility_ipfs actor_utility_rpc_adapter actor_utility_rpc_layer1"
     VMH_FILES="$VMH_TAR vmh-server"
 
     if [ $TAR_FILE_MODE = "all" ]; then
