@@ -1,0 +1,39 @@
+version: "3.1"
+
+services:
+  ##################    Layer1   #######################
+  layer1:
+    image: tearust/tea-layer1:gluon-0.2.2
+    container_name: "layer1"
+    volumes:
+      - .layer1:/root/.local
+    command: bash -c "tea-layer1 --dev --alice --unsafe-ws-external --unsafe-rpc-external --rpc-cors all -lwarn"
+    network_mode: host
+
+  #####################   IPFS     #####################
+
+  ipfs:
+    image: realraindust/ipfs:0.8.0
+    container_name: ipfs
+    volumes:
+      - ".ipfs:/data/ipfs"
+    network_mode: host
+
+  # ################ Layer1 Facade  ###########
+
+  facade:
+    environment:
+      - LAYER1_URL=ws://layer1:9944
+    image: realraindust/facade:latest
+    container_name: "facade"
+    network_mode: host
+
+  # ################ Adapter  ##############
+
+  adapter:
+    environment:
+      - IPFS_PORT=5001
+    image: realraindust/adapter:latest
+    container_name: "adapter"
+    network_mode: host
+    command: ["./wait-for-it.sh", "ipfs:5001", "--", "./tea-adapter"]

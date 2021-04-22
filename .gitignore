@@ -11,3 +11,6 @@ vwh-server
 *.wasm
 cids.txt
 *.binding.json
+
+.ipfs/
+.layer1/
