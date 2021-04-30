@@ -32,21 +32,21 @@ Here are the descriptions about parameters with `create` subcommand:
 ### push resources into EC2 instance
 Run the following command to push resources into EC2 instance:
 ```
-./aws-tool.sh push [pem key path] [push mode] [dns or ip address]
+./aws-tool.sh push [push mode] [dns or ip address] [pem key path]
 ```
 Here are the descriptions about parameters with `push` subcommand:
-- [pem key path]: (optional) corresponding with [key-name] in the create new instance step, default value is "~/.ssh/aws-tea-northeast2.pem" that is my pem file path
 - [push mode]: (optional) value can be `all`, `script`, `client`, and `vmh`, default is `all` that pull all resources into EC2 instance
 - [dns or ip address]: (optional) the host address that ssh connect to, default is queried by `aws ec2 describe-network-interfaces` and parsed from the query result
+- [pem key path]: (optional) corresponding with [key-name] in the create new instance step, default value is "~/.ssh/aws-tea-northeast2.pem" that is my pem file path
 
 ### prepare EC environment
 After pushed resources into EC2 instance, run the following command to prepare EC2 instance:
 ```
-./aws-tool.sh install [pem key path] [dns or ip address]
+./aws-tool.sh install [dns or ip address] [pem key path]
 ```
 Here are the descriptions about parameters with `install` subcommand:
-- [pem key path]: (optional) corresponding with [key-name] in the create new instance step, default value is "~/.ssh/aws-tea-northeast2.pem" that is my pem file path
 - [dns or ip address]: (optional) the host address that ssh connect to, default is queried by `aws ec2 describe-network-interfaces` and parsed from the query result
+- [pem key path]: (optional) corresponding with [key-name] in the create new instance step, default value is "~/.ssh/aws-tea-northeast2.pem" that is my pem file path
 
 ### ssh into EC2 instance
 Run the following command to ssh into the created instance:
@@ -66,6 +66,16 @@ Here are the descriptions about parameters with `terminate` subcommand:
 - [instance ids]: (optional) id of the EC2 instance to be terminated, default is the first instance id queried by `aws ec2 describe-instances` command
 
 If you have multiple instance running, or some instances are in shutting down mode, this command may not terminate the current running instance successfully. Please make sure to run `./aws-tool.sh ids` after this command to make sure that the instance is actually in "shutting down mode".
+
+### push single resource into EC2 instance
+Run the following command to push single resource into EC2 instance:
+```
+./aws-tool.sh single [single file path] [dns or ip address] [pem key path]
+```
+Here are the descriptions about parameters with `push` subcommand:
+- [single file path]: path of the single file to push
+- [dns or ip address]: (optional) the host address that ssh connect to, default is queried by `aws ec2 describe-network-interfaces` and parsed from the query result
+- [pem key path]: (optional) corresponding with [key-name] in the create new instance step, default value is "~/.ssh/aws-tea-northeast2.pem" that is my pem file path
 
 ### list all EC2 instances
 Run the following command to list all EC2 instances ids and corresponding status:

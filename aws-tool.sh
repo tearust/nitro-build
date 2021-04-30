@@ -126,9 +126,9 @@ elif [ $1 = "tunnel" ]; then
 
     tunnel_with
 elif [ $1 = "push" ]; then
-    PEM_PATH=$2
-    TAR_FILE_MODE=$3
-    DNS_NAME=$4
+    TAR_FILE_MODE=$2
+    DNS_NAME=$3
+    PEM_PATH=$4
     : ${TAR_FILE_MODE:="all"}
 
     SSH_CMD=$( untar_files )
@@ -140,15 +140,15 @@ elif [ $1 = "push" ]; then
     echo "done!"
 elif [ $1 = "single" ]; then
     SINGLE_FILE=$2
-    PEM_PATH=$3
-    DNS_NAME=$4
+    DNS_NAME=$3
+    PEM_PATH=$4
 
     scp_single
 
     echo "done!"
 elif [ $1 = "install" ]; then
-    PEM_PATH=$2
-    DNS_NAME=$3
+    DNS_NAME=$2
+    PEM_PATH=$3
 
     SSH_CMD="sh ./aws-prepare.sh"
     ssh_with
