@@ -96,6 +96,14 @@ function scp_single() {
     ssh -i "${PEM_PATH}" "ec2-user@${DNS_NAME}" "tar xzf ${SINGLE_TAR}"
 }
 
+function scp_back() {
+    : ${TARGET_PATH:=.}
+    : ${PEM_PATH:="~/.ssh/aws-tea-northeast2.pem"}
+    : ${DNS_NAME:=`aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[0].Association.PublicDnsName'`}
+
+    scp -i "$PEM_PATH" ec2-user@${DNS_NAME}:${REMOTE_FILE} ${TARGET_PATH}
+}
+
 set -e
 
 if [ $1 = "ids" ]; then
@@ -152,6 +160,15 @@ elif [ $1 = "install" ]; then
 
     SSH_CMD="sh ./aws-prepare.sh"
     ssh_with
+
+    echo "done!"
+elif [ $1 = "scp" ]; then
+    REMOTE_FILE=$2
+    TARGET_PATH=$3
+    DNS_NAME=$4
+    PEM_PATH=$5
+
+    scp_back
 
     echo "done!"
 else
