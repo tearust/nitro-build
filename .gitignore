@@ -4,6 +4,7 @@
 vmh-server
 parent-instance-client
 rpc_adapter_server
+server_simple
 provider_*
 actor_*
 *.so
