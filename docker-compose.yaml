@@ -7,7 +7,7 @@ services:
     container_name: "layer1"
     volumes:
       - .layer1:/root/.local
-    command: bash -c "tea-layer1 --dev --alice --unsafe-ws-external --unsafe-rpc-external --rpc-cors all -lwarn"
+    command: bash -c "tea-camellia --dev --alice --unsafe-ws-external --unsafe-rpc-external --rpc-cors all -lwarn"
     network_mode: host
 
   #####################   IPFS     #####################
