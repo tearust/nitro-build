@@ -32,7 +32,6 @@ services:
       WAIT_HOSTS: ipfs:5001
       WAIT_TIMEOUT: 300
       WAIT_SLEEP_INTERVAL: 5
-    command: ["./wait-for-it.sh", "ipfs:5001", "--", "./tea-adapter"]
 
   # ################ Vmh-server  ##############
 
