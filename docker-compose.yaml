@@ -29,7 +29,7 @@ services:
       IPFS_PORT: 5001
       IPFS_SERVER: localhost
       RPC_CLIENTURL: http://localhost:5010
-      WAIT_HOSTS: ipfs:5001
+      WAIT_HOSTS: localhost:5001
       WAIT_TIMEOUT: 300
       WAIT_SLEEP_INTERVAL: 5
 
