@@ -3,7 +3,7 @@ version: "3.1"
 services:
   ##################    Layer1   #######################
   layer1:
-    image: tearust/tea-layer1:gluon-0.2.2
+    image: tearust/tea-camellia:epoch5-0.3
     container_name: "layer1"
     volumes:
       - .layer1:/root/.local
@@ -19,21 +19,56 @@ services:
       - ".ipfs:/data/ipfs"
     network_mode: host
 
-  # ################ Layer1 Facade  ###########
-
-  facade:
-    environment:
-      - LAYER1_URL=ws://layer1:9944
-    image: realraindust/facade:latest
-    container_name: "facade"
-    network_mode: host
-
   # ################ Adapter  ##############
 
   adapter:
-    environment:
-      - IPFS_PORT=5001
-    image: realraindust/adapter:latest
+    image: tearust/adapter:layer2-0.2
     container_name: "adapter"
     network_mode: host
+    environment:
+      IPFS_PORT: 5001
+      IPFS_SERVER: localhost
+      RPC_CLIENTURL: http://localhost:5010
+      WAIT_HOSTS: ipfs:5001
+      WAIT_TIMEOUT: 300
+      WAIT_SLEEP_INTERVAL: 5
     command: ["./wait-for-it.sh", "ipfs:5001", "--", "./tea-adapter"]
+
+  # ################ Vmh-server  ##############
+
+  vmh-server:
+    image: realraindust/vmh-server:latest
+    container_name: "vmh-server"
+    network_mode: host
+    environment:
+      CLIENT_HOST: localhost
+
+  parent-instance-client:
+    image: realraindust/parent-instance-client:latest
+    container_name: "parent-instance-client"
+    network_mode: host
+    volumes:
+      - .log:/log
+    environment:
+      ADAPTER_CLIENT_URL: http://localhost:5011
+      LAYER1_CLIENT_URL: http://localhost:5013
+      LOG_FILE: /log/output.log
+      VMH_HOST: localhost
+      IPFS_HOST: localhost
+      IPFS_PORT: 5001
+      TEA_ID: 3zjLTxJHkEHI6NI4EJ7yoVCwF/OCIG4k/uky5jfC23s=
+      TEA_ENV_SETTINGS:
+        MODE:DEV
+        PUBLIC_URLS:https://tearust.com
+        FLUENCER_HTTP_MODE:leader-only
+      JOIN_DEFAULT_RAFT_NETWORK: "false"
+      LAYER1_NODE_IP: localhost
+      LAYER1_NODE_PORT: 9944
+      ORBITDB_IP: 139.198.14.205
+      ORBITDB_PORT: 6001
+      WAIT_HOSTS: localhost:5007, localhost:8000, localhost:5001, localhost:9944
+      WAIT_TIMEOUT: 300
+      WAIT_SLEEP_INTERVAL: 5
+    entrypoint: /bin/bash
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
