@@ -4,7 +4,7 @@ services:
   ##################    Layer1   #######################
   layer1:
     image: tearust/tea-camellia:epoch5-0.3
-    container_name: "layer1"
+    container_name: layer1
     volumes:
       - .layer1:/root/.local
     command: bash -c "tea-camellia --dev --alice --unsafe-ws-external --unsafe-rpc-external --rpc-cors all -lwarn"
@@ -23,7 +23,7 @@ services:
 
   adapter:
     image: tearust/adapter:layer2-0.2
-    container_name: "adapter"
+    container_name: adapter
     network_mode: host
     environment:
       IPFS_PORT: 5001
@@ -37,14 +37,14 @@ services:
 
   vmh-server:
     image: realraindust/vmh-server:latest
-    container_name: "vmh-server"
+    container_name: vmh
     network_mode: host
     environment:
       CLIENT_HOST: localhost
 
   parent-instance-client:
     image: realraindust/parent-instance-client:latest
-    container_name: "parent-instance-client"
+    container_name: client
     network_mode: host
     volumes:
       - .log:/log
