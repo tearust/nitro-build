@@ -7,7 +7,7 @@ VMH_TAR="vmh.tar"
 SINGLE_TAR="single.tar"
 
 function tar_files() {
-    SCRIPT_FILES="$SCRIPT_TAR *.sh *.yaml"
+    SCRIPT_FILES="$SCRIPT_TAR *.sh *.yaml swarm.key"
     CLINET_FILES="$CLIENT_TAR parent-instance-client provider_kvp provider_nitro provider_crypto actor_utility_ipfs actor_utility_rpc_adapter actor_utility_rpc_layer1"
     VMH_FILES="$VMH_TAR vmh-server"
 
@@ -102,6 +102,13 @@ function scp_back() {
     : ${DNS_NAME:=`aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[0].Association.PublicDnsName'`}
 
     scp -i "$PEM_PATH" ec2-user@${DNS_NAME}:${REMOTE_FILE} ${TARGET_PATH}
+}
+
+function ipfs_init() {
+    : ${PEM_PATH:="~/.ssh/aws-tea-northeast2.pem"}
+    : ${DNS_NAME:=`aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[0].Association.PublicDnsName'`}
+
+    ssh -i "${PEM_PATH}" "ec2-user@${DNS_NAME}" "mkdir -p .ipfs && cp swarm.key .ipfs/"
 }
 
 function ipfs_id() {
@@ -200,7 +207,12 @@ elif [ $1 = "scp" ]; then
 
     echo "done!"
 elif [ $1 = "ipfs" ]; then
-    if [ $2 = "id" ]; then
+    if [ $2 = "init" ]; then
+        DNS_NAME=$3
+        PEM_PATH=$4
+
+        ipfs_init
+    elif [ $2 = "id" ]; then
         DNS_NAME=$3
         PEM_PATH=$4
 
