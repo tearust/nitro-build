@@ -132,6 +132,13 @@ function ipfs_bootstrap_add() {
     ssh -i "${PEM_PATH}" "ec2-user@${DNS_NAME}" "docker exec ipfs ipfs bootstrap add ${IPFS_ADDRESS}"
 }
 
+function ipfs_bootstrap_list() {
+    : ${PEM_PATH:="~/.ssh/aws-tea-northeast2.pem"}
+    : ${DNS_NAME:=`aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[0].Association.PublicDnsName'`}
+
+    ssh -i "${PEM_PATH}" "ec2-user@${DNS_NAME}" "docker exec ipfs ipfs bootstrap list"
+}
+
 function ipfs_swarm_peers() {
     : ${PEM_PATH:="~/.ssh/aws-tea-northeast2.pem"}
     : ${DNS_NAME:=`aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[0].Association.PublicDnsName'`}
@@ -222,6 +229,11 @@ elif [ $1 = "ipfs" ]; then
         PEM_PATH=$4
 
         ipfs_bootstrap_clear
+    elif [ $2 = "bootstrap" ]; then
+        DNS_NAME=$3
+        PEM_PATH=$4
+
+        ipfs_bootstrap_list
     elif [ $2 = "add" ]; then
         IPFS_ADDRESS=$3
         DNS_NAME=$4
