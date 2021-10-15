@@ -151,14 +151,14 @@ elif [ $1 = "terminate" ]; then
         aws ec2 terminate-instances --instance-ids $2
     fi
 elif [ $1 = "ssh" ]; then
-    PEM_PATH=$2
-    DNS_NAME=$3
+    DNS_NAME=$2
+    PEM_PATH=$3
 
     SSH_CMD=""
     ssh_with
 elif [ $1 = "tunnel" ]; then
-    PEM_PATH=$2
-    DNS_NAME=$3
+    DNS_NAME=$2
+    PEM_PATH=$3
 
     tunnel_with
 elif [ $1 = "push" ]; then
