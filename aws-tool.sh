@@ -104,6 +104,34 @@ function scp_back() {
     scp -i "$PEM_PATH" ec2-user@${DNS_NAME}:${REMOTE_FILE} ${TARGET_PATH}
 }
 
+function ipfs_id() {
+    : ${PEM_PATH:="~/.ssh/aws-tea-northeast2.pem"}
+    : ${DNS_NAME:=`aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[0].Association.PublicDnsName'`}
+
+    ssh -i "${PEM_PATH}" "ec2-user@${DNS_NAME}" "docker exec ipfs ipfs id | jq -r '.ID'"
+}
+
+function ipfs_bootstrap_clear() {
+    : ${PEM_PATH:="~/.ssh/aws-tea-northeast2.pem"}
+    : ${DNS_NAME:=`aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[0].Association.PublicDnsName'`}
+
+    ssh -i "${PEM_PATH}" "ec2-user@${DNS_NAME}" "docker exec ipfs ipfs bootstrap rm --all"
+}
+
+function ipfs_bootstrap_add() {
+    : ${PEM_PATH:="~/.ssh/aws-tea-northeast2.pem"}
+    : ${DNS_NAME:=`aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[0].Association.PublicDnsName'`}
+
+    ssh -i "${PEM_PATH}" "ec2-user@${DNS_NAME}" "docker exec ipfs ipfs bootstrap add ${IPFS_ADDRESS}"
+}
+
+function ipfs_swarm_peers() {
+    : ${PEM_PATH:="~/.ssh/aws-tea-northeast2.pem"}
+    : ${DNS_NAME:=`aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[0].Association.PublicDnsName'`}
+
+    ssh -i "${PEM_PATH}" "ec2-user@${DNS_NAME}" "docker exec ipfs ipfs swarm peers"
+}
+
 set -e
 
 if [ $1 = "ids" ]; then
@@ -171,6 +199,31 @@ elif [ $1 = "scp" ]; then
     scp_back
 
     echo "done!"
+elif [ $1 = "ipfs" ]; then
+    if [ $2 = "id" ]; then
+        DNS_NAME=$3
+        PEM_PATH=$4
+
+        ipfs_id
+    elif [ $2 = "clear" ]; then
+        DNS_NAME=$3
+        PEM_PATH=$4
+
+        ipfs_bootstrap_clear
+    elif [ $2 = "add" ]; then
+        IPFS_ADDRESS=$3
+        DNS_NAME=$4
+        PEM_PATH=$5
+
+        ipfs_bootstrap_add
+    elif [ $2 = "peers" ]; then
+        DNS_NAME=$3
+        PEM_PATH=$4
+
+        ipfs_swarm_peers
+    else
+        echo "unknown ipfs sub-command. Supported subcommand: id, clear, add, peers"
+    fi
 else
     echo "unknown command. Supported subcommand: ids, dns, create, terminate, ssh, push, install"
 fi
