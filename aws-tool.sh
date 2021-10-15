@@ -108,7 +108,7 @@ function ipfs_init() {
     : ${PEM_PATH:="~/.ssh/aws-tea-northeast2.pem"}
     : ${DNS_NAME:=`aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[0].Association.PublicDnsName'`}
 
-    ssh -i "${PEM_PATH}" "ec2-user@${DNS_NAME}" "mkdir -p .ipfs && cp swarm.key .ipfs/"
+    ssh -i "${PEM_PATH}" "ec2-user@${DNS_NAME}" "rm -rf .ipfs && mkdir -p .ipfs && cp swarm.key .ipfs/"
 }
 
 function ipfs_id() {
