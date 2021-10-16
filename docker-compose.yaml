@@ -22,7 +22,7 @@ services:
   # ################ Adapter  ##############
 
   adapter:
-    image: tearust/adapter:layer2-0.2
+    image: realraindust/adapter:latest
     container_name: adapter
     network_mode: host
     environment:
