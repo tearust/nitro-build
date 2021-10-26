@@ -3,7 +3,7 @@ version: "3.1"
 services:
   ##################    Layer1   #######################
   layer1:
-    image: tearust/tea-camellia:epoch5-0.3
+    image: tearust/tea-camellia:epoch6-0.1
     container_name: layer1
     volumes:
       - .layer1:/root/.local
