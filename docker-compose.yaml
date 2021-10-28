@@ -15,7 +15,7 @@ services:
                       --unsafe-rpc-external 
                       --rpc-methods Unsafe 
                       --rpc-cors all 
-                      --bootnodes /ip4/134.209.69.224/tcp/30333/p2p/12D3KooWEPrY6XyhESMWdBBFgr36tJLnfNQRmShRMi133KKrWiU8"
+                      --bootnodes /ip4/3.35.165.240/tcp/30333/p2p/12D3KooWNuASv6aVoqpM8j42yps76Ru6fYVWrkoJwyG4tbYcJngB"
     network_mode: host
 
   #####################   IPFS     #####################
