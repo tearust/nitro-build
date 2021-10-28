@@ -71,6 +71,7 @@ services:
       JOIN_DEFAULT_RAFT_NETWORK: "false"
       LAYER1_NODE_IP: localhost
       LAYER1_NODE_PORT: 9944
+      LAYER1_ACCOUNT: //Alice
       ORBITDB_IP: 139.198.14.205
       ORBITDB_PORT: 6001
       WAIT_HOSTS: localhost:5007, localhost:8000, localhost:5001, localhost:9944
