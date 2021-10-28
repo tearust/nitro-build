@@ -202,6 +202,7 @@ elif [ $1 = "install" ]; then
 
     SSH_CMD="sh ./aws-prepare.sh"
     ssh_with
+    ipfs_init
 
     echo "done!"
 elif [ $1 = "scp" ]; then
