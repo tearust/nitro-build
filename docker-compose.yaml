@@ -3,11 +3,19 @@ version: "3.1"
 services:
   ##################    Layer1   #######################
   layer1:
-    image: tearust/tea-camellia:epoch6-0.1
+    image: realraindust/tea-camellia:epoch6-0.1
     container_name: layer1
     volumes:
       - .layer1:/root/.local
-    command: bash -c "tea-camellia --dev --alice --unsafe-ws-external --unsafe-rpc-external --rpc-cors all -lwarn"
+    command: bash -c "tea-camellia 
+                      --chain local 
+                      --alice
+                      --ws-max-connections 10000 
+                      --unsafe-ws-external 
+                      --unsafe-rpc-external 
+                      --rpc-methods Unsafe 
+                      --rpc-cors all 
+                      --bootnodes /ip4/134.209.69.224/tcp/30333/p2p/12D3KooWEPrY6XyhESMWdBBFgr36tJLnfNQRmShRMi133KKrWiU8"
     network_mode: host
 
   #####################   IPFS     #####################
