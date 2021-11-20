@@ -61,13 +61,13 @@ function scp_files() {
 }
 
 function ssh_with() {
-    : ${PEM_PATH:="~/.ssh/aws-tea-northeast2.pem"}
+    : ${PEM_PATH:="~/.ssh/aws-tea-northeast1.pem"}
     : ${DNS_NAME:=`aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[0].Association.PublicDnsName'`}
     ssh -i "${PEM_PATH}" "ec2-user@${DNS_NAME}" $SSH_CMD
 }
 
 function tunnel_with() {
-    : ${PEM_PATH:="~/.ssh/aws-tea-northeast2.pem"}
+    : ${PEM_PATH:="~/.ssh/aws-tea-northeast1.pem"}
     : ${DNS_NAME:=`aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[0].Association.PublicDnsName'`}
     ssh -i "${PEM_PATH}" \
         -L 8000:127.0.0.1:8000 \
@@ -81,14 +81,14 @@ function tunnel_with() {
 }
 
 function scp_with() {
-    : ${PEM_PATH:="~/.ssh/aws-tea-northeast2.pem"}
+    : ${PEM_PATH:="~/.ssh/aws-tea-northeast1.pem"}
     : ${DNS_NAME:=`aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[0].Association.PublicDnsName'`}
 
     scp -i "$PEM_PATH" `scp_files` ec2-user@${DNS_NAME}:~
 }
 
 function scp_single() {
-    : ${PEM_PATH:="~/.ssh/aws-tea-northeast2.pem"}
+    : ${PEM_PATH:="~/.ssh/aws-tea-northeast1.pem"}
     : ${DNS_NAME:=`aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[0].Association.PublicDnsName'`}
 
     tar czf ${SINGLE_TAR} ${SINGLE_FILE}
@@ -98,49 +98,49 @@ function scp_single() {
 
 function scp_back() {
     : ${TARGET_PATH:=.}
-    : ${PEM_PATH:="~/.ssh/aws-tea-northeast2.pem"}
+    : ${PEM_PATH:="~/.ssh/aws-tea-northeast1.pem"}
     : ${DNS_NAME:=`aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[0].Association.PublicDnsName'`}
 
     scp -i "$PEM_PATH" ec2-user@${DNS_NAME}:${REMOTE_FILE} ${TARGET_PATH}
 }
 
 function ipfs_init() {
-    : ${PEM_PATH:="~/.ssh/aws-tea-northeast2.pem"}
+    : ${PEM_PATH:="~/.ssh/aws-tea-northeast1.pem"}
     : ${DNS_NAME:=`aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[0].Association.PublicDnsName'`}
 
     ssh -i "${PEM_PATH}" "ec2-user@${DNS_NAME}" "rm -rf .ipfs && mkdir -p .ipfs && cp swarm.key .ipfs/"
 }
 
 function ipfs_id() {
-    : ${PEM_PATH:="~/.ssh/aws-tea-northeast2.pem"}
+    : ${PEM_PATH:="~/.ssh/aws-tea-northeast1.pem"}
     : ${DNS_NAME:=`aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[0].Association.PublicDnsName'`}
 
     ssh -i "${PEM_PATH}" "ec2-user@${DNS_NAME}" "docker exec ipfs ipfs id | jq -r '.ID'"
 }
 
 function ipfs_bootstrap_clear() {
-    : ${PEM_PATH:="~/.ssh/aws-tea-northeast2.pem"}
+    : ${PEM_PATH:="~/.ssh/aws-tea-northeast1.pem"}
     : ${DNS_NAME:=`aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[0].Association.PublicDnsName'`}
 
     ssh -i "${PEM_PATH}" "ec2-user@${DNS_NAME}" "docker exec ipfs ipfs bootstrap rm --all"
 }
 
 function ipfs_bootstrap_add() {
-    : ${PEM_PATH:="~/.ssh/aws-tea-northeast2.pem"}
+    : ${PEM_PATH:="~/.ssh/aws-tea-northeast1.pem"}
     : ${DNS_NAME:=`aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[0].Association.PublicDnsName'`}
 
     ssh -i "${PEM_PATH}" "ec2-user@${DNS_NAME}" "docker exec ipfs ipfs bootstrap add ${IPFS_ADDRESS}"
 }
 
 function ipfs_bootstrap_list() {
-    : ${PEM_PATH:="~/.ssh/aws-tea-northeast2.pem"}
+    : ${PEM_PATH:="~/.ssh/aws-tea-northeast1.pem"}
     : ${DNS_NAME:=`aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[0].Association.PublicDnsName'`}
 
     ssh -i "${PEM_PATH}" "ec2-user@${DNS_NAME}" "docker exec ipfs ipfs bootstrap list"
 }
 
 function ipfs_swarm_peers() {
-    : ${PEM_PATH:="~/.ssh/aws-tea-northeast2.pem"}
+    : ${PEM_PATH:="~/.ssh/aws-tea-northeast1.pem"}
     : ${DNS_NAME:=`aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[0].Association.PublicDnsName'`}
 
     ssh -i "${PEM_PATH}" "ec2-user@${DNS_NAME}" "docker exec ipfs ipfs swarm peers"
@@ -154,7 +154,7 @@ elif [ $1 = "dns" ]; then
     aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[] | "\(.Attachment.InstanceId) \(.Association.PublicDnsName) \(.Association.PublicIp)"'
 elif [ $1 = "create" ]; then
     if [ -z "$4" ]; then
-        aws ec2 run-instances --image-id ami-07464b2b9929898f8 --count 1 --instance-type c5.xlarge --key-name aws-tea-northeast2 --security-group-ids sg-a96a74d2 --enclave-options 'Enabled=true'
+        aws ec2 run-instances --image-id ami-0404778e217f54308 --count 1 --instance-type c5.xlarge --key-name aws-tea-northeast1 --security-group-ids sg-057f98f9070f77930 --enclave-options 'Enabled=true'
     else
         aws ec2 run-instances --image-id $2 --count 1 --instance-type c5.xlarge --key-name $3 --security-group-ids $4 --enclave-options 'Enabled=true'
     fi
