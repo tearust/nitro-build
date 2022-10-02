@@ -1,0 +1,41 @@
+{
+	"contract_addresses": {
+		"lock": "0xDf47e953c07b110F1d1E9C4E280695BD157F098F",
+		"storage": "0xB2b8DA2dd6986B643040415b350ad8164394F52C",
+		"maintainer": "0xf0fc0dBF737eEEDEcf083B1D391ca9e6a430fcA0",
+		"token_vesting": "0xa2fEfCd5632344E223ae52e1B149C225C2e49c25",
+		"erc721": "0x48969D9183Bdd4daA1376cA13617E27219F7b088"
+	},
+	"tappstore_id": "0x40E5adf63D3E44AB31c7146806dFc62Aaea4d448",
+	"init_owner": "0xbd6D4f56b59e45ed25c52Eab7EFf2c626e083db9",
+	"chain_id": 5,
+	"validators_min_count": 2,
+	"validators_desired_count": 50,
+	"mining_startup_nodes": [
+		{
+			"machine_id": "df38cb4f12479041c8e8d238109ef2a150b017f382206e24fee932e637c2db7b",
+			"seat_id": 1,
+			"conn_id": "12D3KooWKUd6bwsqNKzFgeruvk7pNSMUoBcrUKKU9Djqd1A3H9q8"
+		},
+		{
+			"machine_id": "c7e016fad0796bb68594e49a6ef1942cf7e73497e69edb32d19ba2fab3696596",
+			"seat_id": 2,
+			"conn_id": "12D3KooWKExtVZ4AY1L3ZkMjihkf7tYPBQQ1Z3kTbUjwBGPrrQa3"
+		},
+		{
+			"machine_id": "2754d7e9c73ced5b302e12464594110850980027f8f83c469e8145eef59220b6",
+			"seat_id": 3,
+			"conn_id": "12D3KooWBBw6uEp9tmMZorkJ2151Nq64EE3D7PTmHFZva6KUdp68"
+		},
+		{
+			"machine_id": "c9380fde1ba795fc656ab08ab4ef4482cf554790fd3abcd4642418ae8fb5fd52",
+			"seat_id": 4,
+			"conn_id": "12D3KooWA8PKZg2Ywh1dWhQ1qoQyK2ZAFazTrDXZNecfuHykTMUk"
+		},
+		{
+			"machine_id": "bd1c0ec25a96172791fe16c28323ceb0c515f17bcd11da4fb183ffd7e6fbb769",
+			"seat_id": 5,
+			"conn_id": "12D3KooWT3gQVdYkDEscGPBHvoWAgiYzdZXeJVdJ2CxXbH8JN5aN"
+		}
+	]
+}

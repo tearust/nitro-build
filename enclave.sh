@@ -2,10 +2,8 @@
 
 if [ $1 = "docker" ]; then
   if [ -z "$2" ]; then
-    # docker rmi tearust/runtime:nitro
-    docker rmi realraindust/runtime:latest
-    # nitro-cli build-enclave --docker-uri tearust/runtime:nitro --output-file enclave_app.eif
-    nitro-cli build-enclave --docker-uri realraindust/runtime:latest --output-file enclave_app.eif
+    docker rmi tearust/runtime:nitro
+    nitro-cli build-enclave --docker-uri tearust/runtime:nitro --output-file enclave_app.eif
   else
     docker rmi $2/runtime:nitro
     nitro-cli build-enclave --docker-uri $2/runtime:nitro --output-file enclave_app.eif
