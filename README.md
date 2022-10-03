@@ -13,9 +13,6 @@ Tea-runtime is running inside the enclave. It can communicate with outside world
 
 Parent-instance-client is running inside a docker container outside of the enclave. 
 
-VMH-server is the service that relay all message between parent-instance-client and tea-runtime. 
-
-On one hand, vmh-server communicate with tea-runtime inside the enclave via vsock, on the other hand, vmh-server communicate with parent-instance-client that running inside the docker container via tcp.
 
 ## Use aws-tool.sh to create EC2 instance
 ### create new instance
@@ -35,7 +32,7 @@ Run the following command to push resources into EC2 instance:
 ./aws-tool.sh push [push mode] [dns or ip address] [pem key path]
 ```
 Here are the descriptions about parameters with `push` subcommand:
-- [push mode]: (optional) value can be `all`, `script`, `client`, and `vmh`, default is `all` that pull all resources into EC2 instance
+- [push mode]: (optional) value can be `all`, `script`, and `client`, default is `all` that pull all resources into EC2 instance
 - [dns or ip address]: (optional) the host address that ssh connect to, default is queried by `aws ec2 describe-network-interfaces` and parsed from the query result
 - [pem key path]: (optional) corresponding with [key-name] in the create new instance step, default value is "~/.ssh/aws-tea-northeast2.pem" that is my pem file path
 
@@ -125,13 +122,6 @@ Run `./enclave.sh list` anytime you want to make sure if there is an enclave run
 
 After running the enclave app, you should following the next step to run client app on the parent instance side:
 
-### start vmh-server
-
-run
-
-```
-./vmh-server
-```
 
 ### start aprent-instance-client
 
@@ -144,30 +134,3 @@ press Ctrl+B + C to create a new tmux tab page or Ctrl+B + N to switch to the cl
 Now, you should see the promopt again. This promopt is the docker container's prompt. That means you are inside the docker container now.
 
 You can run provider_kvp or parent-instance-client for testing. You can also switch between two tmux session by press `ctrl+b n` to check logs. Make sure all three programs running ok.
-
-## use ipfs.sh to build ipfs image
-### compile ipfs executable
-
-use the following command to compile ipfs executable:
-```
-./ipfs.sh compile
-```
-after compile there will be two executable in the ipfs subdirectory:
-- ipfs: executable for running natively
-- ipfs-linux: executable for package into docker image 
-
-### build docker images
-use the following command to build ipfs docker image:
-```
-./ipfs.sh build [dockerhub account]
-```
-Here are the descriptions about parameters with `build` subcommand:
-- [dockerhub account]: (optional) docker-hub account that push the docker image into
-
-### run docker container
-use the following command to run the ipfs docker container:
-```
-./ipfs.sh run [dockerhub account]
-```
-Here are the descriptions about parameters with `build` subcommand:
-- [dockerhub account]: (optional) docker-hub account that will pull the docker image
