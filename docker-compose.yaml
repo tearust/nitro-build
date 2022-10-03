@@ -26,6 +26,3 @@ services:
       STATE_MAGIC_NUMBER: 100
       PERSIST_PATH: /tokenstate/persist
       RUST_BACKTRACE: full
-    entrypoint: /bin/bash
-    stdin_open: true # docker run -i
-    tty: true # docker run -t

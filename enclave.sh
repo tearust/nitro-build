@@ -20,6 +20,10 @@ elif [ $1 = "clean" ]; then
   nitro-cli describe-enclaves | jq '.[0].EnclaveID' | xargs nitro-cli terminate-enclave --enclave-id
 elif [ $1 = "console" ]; then
   nitro-cli describe-enclaves | jq '.[0].EnclaveID' | xargs nitro-cli console --enclave-id
+elif [ $1 = "client" ]; then
+  docker-compose down
+  docker rmi tearust/parent-instance-client:nitro
+  docker-compose up
 else
   # todo print all available command later
   echo "unknown command. Supported subcommand: docker, debug, run, list, clean, console"
