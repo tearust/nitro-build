@@ -1,5 +1,9 @@
 #!/bin/sh
 
+if [ -n $1 ] && [ $1 = "rm" ]; then
+	docker rmi tearust/parent-instance-client:nitro-cli
+fi
+
 docker run \
 	--name client \
 	--network host \
