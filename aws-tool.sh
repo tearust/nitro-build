@@ -84,6 +84,14 @@ function scp_single() {
     ssh -i "${PEM_PATH}" "ec2-user@${DNS_NAME}" "tar xzf ${SINGLE_TAR}"
 }
 
+function scp_libp2p_key() {
+    : ${PEM_PATH:="~/.ssh/aws-tea-northeast2.pem"}
+    : ${DNS_NAME:=`aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[0].Association.PublicDnsName'`}
+
+    ssh -i "${PEM_PATH}" "ec2-user@${DNS_NAME}" "mkdir -p ~/.libp2p"
+    scp -i "${PEM_PATH}" .conn_id_keys/${KEY_NAME}.key ec2-user@${DNS_NAME}:~/.libp2p/key
+}
+
 function scp_back() {
     : ${TARGET_PATH:=.}
     : ${PEM_PATH:="~/.ssh/aws-tea-northeast2.pem"}
@@ -140,6 +148,14 @@ elif [ $1 = "single" ]; then
     PEM_PATH=$4
 
     scp_single
+
+    echo "done!"
+elif [ $1 = "libp2p" ]; then
+    KEY_NAME=$2
+    DNS_NAME=$3
+    PEM_PATH=$4
+
+    scp_libp2p_key
 
     echo "done!"
 elif [ $1 = "install" ]; then
