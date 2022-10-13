@@ -6,7 +6,7 @@ CLIENT_TAR="client.tar"
 SINGLE_TAR="single.tar"
 
 function tar_files() {
-    SCRIPT_FILES="$SCRIPT_TAR *.sh *.yaml *.json"
+    SCRIPT_FILES="$SCRIPT_TAR *.sh *.yaml *.json .env"
     CLINET_FILES="$CLIENT_TAR parent-instance-client"
 
     if [ $TAR_FILE_MODE = "all" ]; then
