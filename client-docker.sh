@@ -4,7 +4,7 @@ if [ -n $1 ] && [ $1 = "rm" ]; then
 	docker rmi tearust/parent-instance-client:nitro-cli
 fi
 
-source .env
+source ~/.env
 
 docker run \
   --name client \
