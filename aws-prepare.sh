@@ -14,6 +14,21 @@ sudo systemctl start docker && sudo systemctl enable docker
 sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
+mkdir -p ~/.config/fish
+sudo yum -y install fish
+
+sudo sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -y
+if [ ! -d "~/.tmux/plugins/tpm" ]; then
+	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
+if [ ! -d "~/dotfiles" ]; then
+	git clone -b ubuntu_lint https://github.com/raindust/dotfiles ~/dotfiles
+fi
+cd ~/dotfiles
+./apply.sh
+tmux source ~/.tmux.conf
+echo "install dependencies completed"
+
 if [ -n $1 ] && [ $1 = "dev" ]; then
   # install general development related packages
   curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh -s -- -y
