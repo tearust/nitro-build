@@ -15,13 +15,14 @@ services:
       ENCLAVE_CID: 6
       LOG_FILE: /log/output.log
       GENESIS_CONFIG_PATH: /tearust/data/genesis.json
-      LAYER1_WS_PROVIDER_URL: wss://goerli.infura.io/ws/v3/4926c6c0569842b89fb5df97a537e198
+      LAYER1_WS_PROVIDER_URL: wss://goerli.infura.io/ws/v3/b48b2f55ce65496c8fa49b450b746095
       LAYER1_KEY_PATH: /layer1/key
       TEA_ID: "0xdf38cb4f12479041c8e8d238109ef2a150b017f382206e24fee932e637c2db7b"
       MACHINE_OWNER: 0x754d7b24d8a4ec00000000000000000000000000
       LIBP2P_NODE_KEY_PATH: /libp2p/key
       LIBP2P_VERSION: "local0.1"
-      IP_ADDRESS: 127.0.0.1
+      IP_ADDRESS: 43.200.172.83
+      LIBP2P_BOOTNODES: /ip4/43.200.172.83/tcp/5998
       APPLY_VALIDATOR: "true"
       STATE_MAGIC_NUMBER: 100
       PERSIST_PATH: /tokenstate/persist
