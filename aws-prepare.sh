@@ -4,7 +4,6 @@
 sudo amazon-linux-extras install aws-nitro-enclaves-cli -y
 sudo yum install aws-nitro-enclaves-cli-devel -y
 sudo yum -y install git
-sudo yum -y install tmux
 sudo usermod -aG ne ec2-user
 sudo usermod -aG docker ec2-user
 sudo curl https://raw.githubusercontent.com/tearust/nitro-build/main/allocator.yaml -o /etc/nitro_enclaves/allocator.yaml
@@ -13,8 +12,28 @@ sudo systemctl start docker && sudo systemctl enable docker
 
 sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
+echo "install basic dependencies completed"
+
+# install deps
+sudo yum install -y gcc kernel-devel make ncurses-devel
+# DOWNLOAD SOURCES FOR LIBEVENT AND MAKE AND INSTALL
+curl -LOk https://github.com/libevent/libevent/releases/download/release-2.1.11-stable/libevent-2.1.11-stable.tar.gz
+tar -xf libevent-2.1.11-stable.tar.gz
+cd libevent-2.1.11-stable
+./configure --prefix=/usr/local
+make
+sudo make install
+# DOWNLOAD SOURCES FOR TMUX AND MAKE AND INSTALL
+curl -LOk https://github.com/tmux/tmux/releases/download/3.0a/tmux-3.0a.tar.gz
+tar -xf tmux-3.0a.tar.gz
+cd tmux-3.0a
+LDFLAGS="-L/usr/local/lib -Wl,-rpath=/usr/local/lib" ./configure --prefix=/usr/local
+make
+sudo make install
 
 mkdir -p ~/.config/fish
+cd /etc/yum.repos.d/
+sudo wget --no-check-certificate https://download.opensuse.org/repositories/shells:fish:release:3/CentOS_7/shells:fish:release:3.repo
 sudo yum -y install fish
 
 sudo sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -y
