@@ -15,15 +15,15 @@ services:
       ENCLAVE_CID: 6
       LOG_FILE: /log/output.log
       GENESIS_CONFIG_PATH: /tearust/data/genesis.json
-      LAYER1_WS_PROVIDER_URL: ${LAYER1_WS_PROVIDER_URL}
-      LAYER1_KEY_PATH: /layer1/key
+      # LAYER1_WS_PROVIDER_URL: ${LAYER1_WS_PROVIDER_URL}
+      # LAYER1_KEY_PATH: /layer1/key
       TEA_ID: "${TEA_ID}"
       MACHINE_OWNER: "${MACHINE_OWNER}"
       LIBP2P_NODE_KEY_PATH: /libp2p/key
       LIBP2P_VERSION: "local0.1"
       IP_ADDRESS: ${IP_ADDRESS}
       LIBP2P_BOOTNODES: ${LIBP2P_BOOTNODES}
-      APPLY_VALIDATOR: "true"
+      # APPLY_VALIDATOR: "true"
       STATE_MAGIC_NUMBER: 100
       PERSIST_PATH: /tokenstate/persist
       RUST_BACKTRACE: full
