@@ -23,11 +23,11 @@ docker run \
   -e TEA_ID="${TEA_ID}" \
   -e MACHINE_OWNER="${MACHINE_OWNER}" \
   -e LIBP2P_NODE_KEY_PATH=/libp2p/key \
-  -e LIBP2P_VERSION="local0.1" \
+  -e LIBP2P_VERSION="nitro0.1" \
   -e IP_ADDRESS=${IP_ADDRESS} \
   -e LIBP2P_BOOTNODES=${LIBP2P_BOOTNODES} \
   -e APPLY_VALIDATOR="true" \
-  -e STATE_MAGIC_NUMBER=100 \
+  -e STATE_MAGIC_NUMBER=200 \
   -e PERSIST_PATH=/tokenstate/persist \
   -e RUST_BACKTRACE=full \
   -it tearust/parent-instance-client:nitro-cli /bin/bash
