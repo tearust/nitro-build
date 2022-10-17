@@ -23,6 +23,7 @@ services:
       LIBP2P_VERSION: "nitro0.1"
       IP_ADDRESS: ${IP_ADDRESS}
       LIBP2P_BOOTNODES: ${LIBP2P_BOOTNODES}
+      # LIBP2P_ENABLE_RELAY_PEERS: "true"
       # APPLY_VALIDATOR: "true"
       STATE_MAGIC_NUMBER: 200
       PERSIST_PATH: /tokenstate/persist

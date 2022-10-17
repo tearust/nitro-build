@@ -26,6 +26,7 @@ docker run \
   -e LIBP2P_VERSION="nitro0.1" \
   -e IP_ADDRESS=${IP_ADDRESS} \
   -e LIBP2P_BOOTNODES=${LIBP2P_BOOTNODES} \
+  -e LIBP2P_ENABLE_RELAY_PEERS="true" \
   -e APPLY_VALIDATOR="true" \
   -e STATE_MAGIC_NUMBER=200 \
   -e PERSIST_PATH=/tokenstate/persist \
