@@ -108,9 +108,9 @@ elif [ $1 = "dns" ]; then
     aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[] | "\(.Attachment.InstanceId) \(.Association.PublicDnsName) \(.Association.PublicIp)"'
 elif [ $1 = "create" ]; then
     if [ -z "$4" ]; then
-        aws ec2 run-instances --image-id ami-07464b2b9929898f8 --count 1 --instance-type c5.xlarge --key-name aws-tea-northeast2 --security-group-ids sg-a96a74d2 --enclave-options 'Enabled=true'
+        aws ec2 run-instances --image-id ami-0c76973fbe0ee100c --count 1 --instance-type c5a.xlarge --key-name aws-tea-northeast2 --security-group-ids sg-a96a74d2 --enclave-options 'Enabled=true'
     else
-        aws ec2 run-instances --image-id $2 --count 1 --instance-type c5.xlarge --key-name $3 --security-group-ids $4 --enclave-options 'Enabled=true'
+        aws ec2 run-instances --image-id $2 --count 1 --instance-type c5a.xlarge --key-name $3 --security-group-ids $4 --enclave-options 'Enabled=true'
     fi
 elif [ $1 = "terminate" ]; then
     if [ -z "$2" ]; then
