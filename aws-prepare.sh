@@ -46,6 +46,7 @@ fi
 cd ~/dotfiles
 ./apply.sh
 tmux source ~/.tmux.conf
+~/.tmux/plugins/tpm/bin/install_plugins
 echo "install dependencies completed"
 
 if [ -n $1 ] && [ $1 = "dev" ]; then
