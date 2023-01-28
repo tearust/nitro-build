@@ -61,10 +61,7 @@ function tunnel_with() {
     : ${DNS_NAME:=`aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[0].Association.PublicDnsName'`}
     ssh -i "${PEM_PATH}" \
         -L 8000:127.0.0.1:8000 \
-        -L 5001:127.0.0.1:5001 \
-        -L 4001:127.0.0.1:4001 \
-        -L 5011:127.0.0.1:5011 \
-        -L 5014:127.0.0.1:5014 \
+        -L 5998:127.0.0.1:5998 \
         -N -T "ec2-user@${DNS_NAME}"
 }
 

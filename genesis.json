@@ -7,10 +7,7 @@
 		"erc721": "0xB306D8e4c444c3FeCbE7e0704B2cBAD278365787"
 	},
 	"tappstore_id": "0xE096Ed2a039beb800897369F6926762BBc1BBfd2",
-	"init_owner": "0xbd6D4f56b59e45ed25c52Eab7EFf2c626e083db9",
 	"chain_id": 5,
-	"validators_min_count": 2,
-	"validators_desired_count": 50,
 	"mining_startup_nodes": [
 		{
 			"machine_id": "df38cb4f12479041c8e8d238109ef2a150b017f382206e24fee932e637c2db7b",
