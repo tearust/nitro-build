@@ -12,6 +12,7 @@ if [ $1 = "docker" ]; then
   docker images
 elif [ $1 = "debug" ]; then
   nitro-cli run-enclave --eif-path enclave_app.eif --cpu-count 2 --enclave-cid 6 --memory 1024 --debug-mode
+  nitro-cli describe-enclaves | jq '.[0].EnclaveID' | xargs nitro-cli console --enclave-id
 elif [ $1 = "run" ]; then
   nitro-cli run-enclave --eif-path enclave_app.eif --cpu-count 2 --enclave-cid 6 --memory 1024
 elif [ $1 = "list" ]; then
