@@ -1,12 +1,12 @@
 {
 	"contract_addresses": {
-		"lock": "0x9b11D1f4C9E4D794E0402834b1532506a5837aC6",
-		"storage": "0xe5C061824A25aF7647A8BF94D6F0dcdE5a9A48dD",
-		"maintainer": "0x1Acd126f0f7964bec58384Ab5a8c4eB31aE09fd2",
-		"token_vesting": "0xB32b3F69158bC249fa723D172176F00A73CA1195",
-		"erc721": "0xB306D8e4c444c3FeCbE7e0704B2cBAD278365787"
+		"lock": "0x1D37b9Bd496c12f356d85A35dAc87F0CA1a8c4f7",
+		"storage": "0x30C8C14C9BbC1477fAa8eD7C09931c859C509E31",
+		"maintainer": "0xBacdd5787cDBc5D8dD97e69Ab882434271EF7EcD",
+		"token_vesting": "0x7573EAD1c4925De687a657667e23402dc423703f",
+		"erc721": "0x626F76c42257d9dCc1b3FFeC26c41a4fA9F2899c"
 	},
-	"tappstore_id": "0xE096Ed2a039beb800897369F6926762BBc1BBfd2",
+	"tappstore_id": "0x6aac2BE388cA3665f7ad5dd555526e36d94Cd822",
 	"chain_id": 5,
 	"mining_startup_nodes": [
 		{

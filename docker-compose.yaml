@@ -17,6 +17,7 @@ services:
       GENESIS_CONFIG_PATH: /tearust/data/genesis.json
       LAYER1_WS_PROVIDER_URL: ${LAYER1_WS_PROVIDER_URL}
       LAYER1_KEY_PATH: /layer1/key
+      LASTEST_TOPUP_HEIGHT: 8313477
       TEA_ID: "${TEA_ID}"
       MACHINE_OWNER: "${MACHINE_OWNER}"
       LIBP2P_NODE_KEY_PATH: /libp2p/key
