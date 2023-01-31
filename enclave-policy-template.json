@@ -6,7 +6,7 @@
 			"Sid": "Enable decrypt from enclave",
 			"Effect": "Allow",
 			"Principal": {
-				"AWS": "arn:aws:iam::580177110170:role/enclave-test"
+				"AWS": "arn:aws:kms:ap-northeast-2:580177110170:key/14bb6329-86c3-4057-ae1f-e8ad453ecab0"
 			},
 			"Action": "kms:Decrypt",
 			"Resource": "*",
@@ -20,7 +20,7 @@
 			"Sid": "Enable encrypt from instance",
 			"Effect": "Allow",
 			"Principal": {
-				"AWS": "arn:aws:iam::580177110170:role/enclave-test"
+				"AWS": "arn:aws:kms:ap-northeast-2:580177110170:key/14bb6329-86c3-4057-ae1f-e8ad453ecab0"
 			},
 			"Action": "kms:Encrypt",
 			"Resource": "*"
@@ -29,7 +29,7 @@
 			"Sid": "Allow access for Key Administrators",
 			"Effect": "Allow",
 			"Principal": {
-				"AWS": "arn:aws:iam::580177110170:role/enclave-test"
+				"AWS": "arn:aws:kms:ap-northeast-2:580177110170:key/14bb6329-86c3-4057-ae1f-e8ad453ecab0"
 			},
 			"Action": [
 				"kms:Create*",
