@@ -13,6 +13,9 @@ services:
       - ./genesis.json:/tearust/data/genesis.json
     environment:
       ENCLAVE_CID: 6
+      NITRO_PROXY_PORT: 8001
+      AWS_REGION: ${AWS_REGION}
+      NITRO_KEY_ID: ${NITRO_KEY_ID}
       LOG_FILE: /log/output.log
       GENESIS_CONFIG_PATH: /tearust/data/genesis.json
       LAYER1_WS_PROVIDER_URL: ${LAYER1_WS_PROVIDER_URL}
