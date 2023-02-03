@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 TAR_FILE_MODE="all"
 SCRIPT_TAR="script.tar"
@@ -100,18 +100,18 @@ function scp_back() {
 set -e
 
 if [ $1 = "ids" ]; then
-    aws ec2 describe-instances | jq '.Reservations[].Instances[] | "\(.InstanceId) \(.State.Name)"'
+    aws ec2 describe-instances --filters Name=instance-state-name,Values=running | jq '.Reservations[].Instances[] | "\(.InstanceId) \(.State.Name)"'
 elif [ $1 = "dns" ]; then
     aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[] | "\(.Attachment.InstanceId) \(.Association.PublicDnsName) \(.Association.PublicIp)"'
 elif [ $1 = "create" ]; then
     if [ -z "$4" ]; then
-        aws ec2 run-instances --image-id ami-0c76973fbe0ee100c --count 1 --instance-type c5a.xlarge --key-name aws-tea-northeast2 --security-group-ids sg-a96a74d2 --enclave-options 'Enabled=true'
+        aws ec2 run-instances --image-id ami-013218fccb68a90d4 --count 1 --instance-type c5a.xlarge --key-name aws-tea-northeast2 --security-group-ids sg-a96a74d2 --enclave-options 'Enabled=true'
     else
         aws ec2 run-instances --image-id $2 --count 1 --instance-type c5a.xlarge --key-name $3 --security-group-ids $4 --enclave-options 'Enabled=true'
     fi
 elif [ $1 = "terminate" ]; then
     if [ -z "$2" ]; then
-        aws ec2 describe-instances | jq '.Reservations[0].Instances[0].InstanceId' | xargs aws ec2 terminate-instances --instance-ids
+        aws ec2 describe-instances --filters Name=instance-state-name,Values=running | jq '.Reservations[0].Instances[0].InstanceId' | xargs aws ec2 terminate-instances --instance-ids
     else
         aws ec2 terminate-instances --instance-ids $2
     fi
