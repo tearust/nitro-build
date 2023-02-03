@@ -14,6 +14,10 @@ cids.txt
 *.binding.json
 enclave-policy-template.json
 
+client-app
+client-runner
+manifest.yaml
+
 .ipfs/
 .layer1/
 .env
