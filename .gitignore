@@ -12,6 +12,7 @@ vwh-server
 *.wasm
 cids.txt
 *.binding.json
+enclave-policy-template.json
 
 .ipfs/
 .layer1/
