@@ -7,7 +7,7 @@ SINGLE_TAR="single.tar"
 
 function tar_files() {
     SCRIPT_FILES="$SCRIPT_TAR *.sh *.yaml *.json .env"
-    CLINET_FILES="$CLIENT_TAR parent-instance-client"
+    CLINET_FILES="$CLIENT_TAR client-runner client-app manifest.yaml genesis.json"
 
     if [ $TAR_FILE_MODE = "all" ]; then
         tar czf $SCRIPT_FILES
