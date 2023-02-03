@@ -4,15 +4,36 @@
 sudo amazon-linux-extras install aws-nitro-enclaves-cli -y
 sudo yum install aws-nitro-enclaves-cli-devel -y
 sudo yum -y install git
+sudo yum install openssl11 -y
 sudo usermod -aG ne ec2-user
 sudo usermod -aG docker ec2-user
 sudo curl https://raw.githubusercontent.com/tearust/nitro-build/main/allocator.yaml -o /etc/nitro_enclaves/allocator.yaml
 sudo systemctl start nitro-enclaves-allocator.service && sudo systemctl enable nitro-enclaves-allocator.service
 sudo systemctl start docker && sudo systemctl enable docker
+sudo localedef -i en_US -f UTF-8 en_US.UTF-8
+sudo yum install bison -y
 
 sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 echo "install basic dependencies completed"
+
+# install make 4.3
+wget https://ftp.gnu.org/gnu/make/make-4.3.tar.gz
+tar -xzvf make-4.3.tar.gz
+cd make-4.3/
+./configure  --prefix=/usr/local/make
+make && sudo make install
+cd /usr/bin/
+sudo mv make make.bak # backup
+sudo ln -sv /usr/local/make/bin/make /usr/bin/make
+cd ~
+
+# install glibc 2.29
+wget https://ftp.gnu.org/gnu/glibc/glibc-2.29.tar.gz
+tar -xzvf glibc-2.29.tar.gz && cd glibc-2.29/
+mkdir build && cd build
+../configure --prefix=/usr --disable-profile --enable-add-ons --with-headers=/usr/include --with-binutils=/usr/bin
+make && sudo make install
 
 # install deps
 sudo yum install -y gcc kernel-devel make ncurses-devel
