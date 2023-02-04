@@ -25,7 +25,8 @@ elif [ $1 = "client" ]; then
   docker-compose down
   docker rmi tearust/parent-instance-client:nitro
   docker-compose up
+elif [ $1 = "proxy" ]; then
+  vsock-proxy 8001 kms.ap-northeast-2.amazonaws.com 443
 else
-  # todo print all available command later
-  echo "unknown command. Supported subcommand: docker, debug, run, list, clean, console"
+  echo "unknown command. Supported subcommand: docker, debug, run, list, clean, console, client, proxy"
 fi
