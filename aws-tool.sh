@@ -104,11 +104,23 @@ if [ $1 = "ids" ]; then
 elif [ $1 = "dns" ]; then
     aws ec2 describe-network-interfaces | jq -r '.NetworkInterfaces[] | "\(.Attachment.InstanceId) \(.Association.PublicDnsName) \(.Association.PublicIp)"'
 elif [ $1 = "create" ]; then
-    if [ -z "$4" ]; then
-        aws ec2 run-instances --image-id ami-013218fccb68a90d4 --count 1 --instance-type c5a.xlarge --key-name aws-tea-northeast2 --security-group-ids sg-a96a74d2 --enclave-options 'Enabled=true'
-    else
-        aws ec2 run-instances --image-id $2 --count 1 --instance-type c5a.xlarge --key-name $3 --security-group-ids $4 --enclave-options 'Enabled=true'
-    fi
+    IMAGE_ID=$2
+    KEY_NAME=$3
+    SECURITY_GROUP_IDS=$4
+    IAM_ROLE_NAME=$5
+    : ${IMAGE_ID:="ami-013218fccb68a90d4"}
+    : ${KEY_NAME:="aws-tea-northeast2"}
+    : ${SECURITY_GROUP_IDS:="sg-a96a74d2"}
+    : ${IAM_ROLE_NAME:="KMS-test"}
+
+    aws ec2 run-instances \
+        --image-id $IMAGE_ID \
+        --count 1 \
+        --instance-type c5a.xlarge \
+        --key-name $KEY_NAME \
+        --security-group-ids $SECURITY_GROUP_IDS \
+        --enclave-options 'Enabled=true' \
+        --iam-instance-profile Name="KMS-test"
 elif [ $1 = "terminate" ]; then
     if [ -z "$2" ]; then
         aws ec2 describe-instances --filters Name=instance-state-name,Values=running | jq '.Reservations[0].Instances[0].InstanceId' | xargs aws ec2 terminate-instances --instance-ids
