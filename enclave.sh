@@ -1,13 +1,10 @@
 #!/bin/sh
 
 if [ $1 = "docker" ]; then
-  if [ -z "$2" ]; then
-    docker rmi tearust/runtime:nitro
-    nitro-cli build-enclave --docker-uri tearust/runtime:nitro --output-file enclave_app.eif
-  else
-    docker rmi $2/runtime:nitro
-    nitro-cli build-enclave --docker-uri $2/runtime:nitro --output-file enclave_app.eif
-  fi
+  DOCKER_USER=$2
+  : ${DOCKER_USER:="tearust"}
+  docker rmi $DOCKER_USER/runtime:nitro
+  nitro-cli build-enclave --docker-uri $DOCKER_USER/runtime:nitro --output-file enclave_app.eif
   echo "current docker images:"
   docker images
 elif [ $1 = "debug" ]; then
@@ -26,7 +23,11 @@ elif [ $1 = "client" ]; then
   docker rmi tearust/parent-instance-client:nitro
   docker-compose up
 elif [ $1 = "proxy" ]; then
-  vsock-proxy 8001 kms.ap-northeast-2.amazonaws.com 443
+  REGION=$2
+  PORT=$3
+  : ${REGION:="ap-northeast-2"}
+  : ${PORT:="8001"}
+  vsock-proxy $PORT kms.$REGION.amazonaws.com 443
 else
   echo "unknown command. Supported subcommand: docker, debug, run, list, clean, console, client, proxy"
 fi
