@@ -4,6 +4,7 @@ TAR_FILE_MODE="all"
 SCRIPT_TAR="script.tar"
 CLIENT_TAR="client.tar"
 SINGLE_TAR="single.tar"
+KMS_ROLE_NAME="KMS-test"
 
 function tar_files() {
     SCRIPT_FILES="$SCRIPT_TAR *.sh *.yaml *.json .env"
@@ -107,11 +108,9 @@ elif [ $1 = "create" ]; then
     IMAGE_ID=$2
     KEY_NAME=$3
     SECURITY_GROUP_IDS=$4
-    IAM_ROLE_NAME=$5
     : ${IMAGE_ID:="ami-013218fccb68a90d4"}
     : ${KEY_NAME:="aws-tea-northeast2"}
     : ${SECURITY_GROUP_IDS:="sg-a96a74d2"}
-    : ${IAM_ROLE_NAME:="KMS-test"}
 
     aws ec2 run-instances \
         --image-id $IMAGE_ID \
@@ -120,7 +119,7 @@ elif [ $1 = "create" ]; then
         --key-name $KEY_NAME \
         --security-group-ids $SECURITY_GROUP_IDS \
         --enclave-options 'Enabled=true' \
-        --iam-instance-profile Name="KMS-test"
+        --iam-instance-profile Name="$KMS_ROLE_NAME"
 elif [ $1 = "terminate" ]; then
     if [ -z "$2" ]; then
         aws ec2 describe-instances --filters Name=instance-state-name,Values=running | jq '.Reservations[0].Instances[0].InstanceId' | xargs aws ec2 terminate-instances --instance-ids
@@ -184,6 +183,47 @@ elif [ $1 = "scp" ]; then
     scp_back
 
     echo "done!"
+elif [ $1 = "role" ]; then
+    set +e
+
+    POLICY_NAME=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 32)
+    # https://awscli.amazonaws.com/v2/documentation/api/latest/reference/iam/create-policy.html
+    POLICY_ARN=$(aws iam create-policy --policy-name $POLICY_NAME --policy-document '{
+    	"Version": "2012-10-17",
+    	"Statement": [
+    		{
+    			"Sid": "AttachKmsPolicy",
+    			"Effect": "Allow",
+    			"Action": [
+    				"kms:Decrypt",
+    				"kms:GenerateDataKey",
+    				"kms:GenerateRandom"
+    			],
+    			"Resource": "arn:aws:kms:*:580177110170:key/f66b0a1b-28c7-49a1-82c8-70094dd7e45b"
+    		}
+    	]
+    }' | jq -r '.[].Arn')
+    echo "policy ARN is: $POLICY_ARN"
+
+    aws iam delete-role --role-name $KMS_ROLE_NAME
+    # https://awscli.amazonaws.com/v2/documentation/api/latest/reference/iam/create-role.html
+    aws iam create-role --role-name $KMS_ROLE_NAME --assume-role-policy-document '{
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Principal": {
+                        "Service": "ec2.amazonaws.com"
+                    },
+                    "Action": "sts:AssumeRole"
+                }
+            ]
+        }'
+    aws iam attach-role-policy --role-name $KMS_ROLE_NAME --policy-arn $POLICY_ARN
+    aws iam attach-role-policy --role-name $KMS_ROLE_NAME --policy-arn 'arn:aws:iam::aws:policy/AWSKeyManagementServicePowerUser'
+    echo "Role created successfully"
+
+    set -e
 else
     echo "unknown command. Supported subcommand: ids, dns, create, terminate, ssh, push, install"
 fi
