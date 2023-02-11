@@ -119,6 +119,7 @@ elif [ $1 = "create" ]; then
         --key-name $KEY_NAME \
         --security-group-ids $SECURITY_GROUP_IDS \
         --enclave-options 'Enabled=true' \
+        --block-device-mapping "[ { \"DeviceName\": \"/dev/xvda\", \"Ebs\": { \"VolumeSize\": 30 } } ]" \
         --iam-instance-profile Name="$KMS_ROLE_NAME"
 elif [ $1 = "terminate" ]; then
     if [ -z "$2" ]; then
