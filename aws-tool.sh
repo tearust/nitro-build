@@ -168,10 +168,11 @@ elif [ $1 = "libp2p" ]; then
 
     echo "done!"
 elif [ $1 = "install" ]; then
-    DNS_NAME=$2
-    PEM_PATH=$3
+    SUB_CMD=$2
+    DNS_NAME=$3
+    PEM_PATH=$4
 
-    SSH_CMD="sh ./aws-prepare.sh"
+    SSH_CMD="sh ./aws-prepare.sh $SUB_CMD"
     ssh_with
 
     echo "done!"
