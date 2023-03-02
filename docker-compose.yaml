@@ -1,11 +1,5 @@
 version: "3.1"
 
-logging:
-  driver: json-file
-  options:
-    max-size: 10m
-    max-file: 5
-
 services:
   parent-instance-client:
     image: tearust/parent-instance-client:nitro
@@ -41,3 +35,8 @@ services:
       PERSIST_PATH: /tokenstate/persist
       RUST_BACKTRACE: full
       MALLOC_CONF: prof:true
+    logging:
+      driver: json-file
+      options:
+        max-size: 20m
+        max-file: 5
