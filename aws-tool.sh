@@ -7,7 +7,7 @@ SINGLE_TAR="single.tar"
 KMS_ROLE_NAME="KMS-test"
 
 function tar_files() {
-    SCRIPT_FILES="$SCRIPT_TAR *.sh *.yaml *.json .env"
+    SCRIPT_FILES="$SCRIPT_TAR *.sh *.yaml *.json .env --ignore-missing-args"
     CLINET_FILES="$CLIENT_TAR client-runner client-app manifest.yaml genesis.json"
 
     if [ $TAR_FILE_MODE = "all" ]; then
@@ -142,7 +142,7 @@ elif [ $1 = "push" ]; then
     TAR_FILE_MODE=$2
     DNS_NAME=$3
     PEM_PATH=$4
-    : ${TAR_FILE_MODE:="all"}
+    : ${TAR_FILE_MODE:="script"}
 
     SSH_CMD=$( untar_files )
 

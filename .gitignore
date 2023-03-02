@@ -19,5 +19,6 @@ client-runner
 manifest.yaml
 
 .ipfs/
+.libp2p/
 .layer1/
 .env
