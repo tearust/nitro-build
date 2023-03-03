@@ -10,12 +10,14 @@ services:
       - .tokenstate:/tokenstate
       - .libp2p:/libp2p
       - ./genesis.json:/tearust/data/genesis.json
+      - .nitro:/nitro
     environment:
       ENCLAVE_CID: 6
       NITRO_PROXY_PORT: 8001
       AWS_REGION: ${AWS_REGION}
       NITRO_KEY_ID: ${NITRO_KEY_ID}
       LOG_FILE: /log/output.log
+      NITRO_KEYS_PATH: /nitro/key
       GENESIS_CONFIG_PATH: /tearust/data/genesis.json
       TEA_ID: "${TEA_ID}"
       MACHINE_OWNER: "${MACHINE_OWNER}"

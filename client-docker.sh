@@ -31,4 +31,6 @@ docker run \
   -e STATE_MAGIC_NUMBER=200 \
   -e PERSIST_PATH=/tokenstate/persist \
   -e RUST_BACKTRACE=full \
+  --log-opt max-size=20m \
+  --log-opt max-file=5  \
   -it tearust/parent-instance-client:nitro-cli /bin/bash

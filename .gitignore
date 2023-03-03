@@ -1,14 +1,9 @@
 *.log
 *.eif
 *.tar
-vmh-server
-parent-instance-client
-rpc_adapter_server
-server_simple
 provider_*
 actor_*
 *.so
-vwh-server
 *.wasm
 cids.txt
 *.binding.json
@@ -22,3 +17,4 @@ manifest.yaml
 .libp2p/
 .layer1/
 .env
+local_tools.sh
