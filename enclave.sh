@@ -28,7 +28,6 @@ elif [ $1 = "debug" ]; then
 elif [ $1 = "run" ]; then
   restart_vsock_proxy
   nitro-cli run-enclave --eif-path enclave_app.eif --cpu-count 2 --enclave-cid 6 --memory 1024
-  console_print
 elif [ $1 = "list" ]; then
   nitro-cli describe-enclaves | jq
 elif [ $1 = "clean" ]; then
