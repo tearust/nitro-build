@@ -22,9 +22,14 @@ if [ $1 = "docker" ]; then
   echo "current docker images:"
   docker images
 elif [ $1 = "debug" ]; then
+  CONSOLE=$2
+  : ${CONSOLE:=""}
+
   restart_vsock_proxy
   nitro-cli run-enclave --eif-path enclave_app.eif --cpu-count 2 --enclave-cid 6 --memory 1024 --debug-mode
-  console_print
+  if [ $CONSOLE = "on" ]
+    console_print
+  fi
 elif [ $1 = "run" ]; then
   restart_vsock_proxy
   nitro-cli run-enclave --eif-path enclave_app.eif --cpu-count 2 --enclave-cid 6 --memory 1024
