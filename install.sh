@@ -103,6 +103,8 @@ pre_settings() {
   fi
 }
 
+set -eu
+
 sudo yum -y install git
 
 info "begin to pre settings..."
