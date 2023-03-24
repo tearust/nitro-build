@@ -48,7 +48,7 @@ confirm_aws_region() {
 }
 
 pre_settings() {
-	sudo apt-get install -y git
+	sudo yum install -y git
 
   echo "begin to git clone resources..."
   RESOURCE_DIR=$HOME/nitro-build
