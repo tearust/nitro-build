@@ -9,22 +9,6 @@ RUN_MODE=$4
 : ${AWS_REGION:=""}
 : ${RUN_MODE:="debug"}
 
-info() {
-  printf '%s\n' "${BOLD}${GREY}>${NO_COLOR} $*"
-}
-
-warn() {
-  printf '%s\n' "${YELLOW}! $*${NO_COLOR}"
-}
-
-error() {
-  printf '%s\n' "${RED}x $*${NO_COLOR}" >&2
-}
-
-completed() {
-  printf '%s\n' "${GREEN}✓${NO_COLOR} $*"
-}
-
 confirm_tea_id() {
   echo "please enter your tea id...(hex encoded, ie. 0x0000000000000000000000000000000000000000000000000000000000000000)"
   set +e
@@ -66,7 +50,7 @@ confirm_aws_region() {
 pre_settings() {
 	sudo apt-get install -y git
 
-  info "begin to git clone resources..."
+  echo "begin to git clone resources..."
   RESOURCE_DIR=$HOME/nitro-build
   if [ ! -d "$RESOURCE_DIR" ]; then
   	git clone -b main https://github.com/tearust/nitro-build
@@ -77,17 +61,17 @@ pre_settings() {
     git fetch origin
   	git reset --hard origin/main
   fi
-  completed "clone resources completed"
+  echo "clone resources completed"
 
 	source server.env
   ENV_FILE=$RESOURCE_DIR/.env
 
   if [[ -n "$TEA_ID" && -n "$MACHINE_OWNER" && -n "$AWS_REGION" && -n "$LIBP2P_BOOTNODES" && -n "$NITRO_KEY_ID" ]]; then
-    info "begin to init env file through command line arguments"
+    echo "begin to init env file through command line arguments"
     printf "TEA_ID=$TEA_ID\nMACHINE_OWNER=$MACHINE_OWNER\nAWS_REGION=$AWS_REGION\nLIBP2P_BOOTNODES=$LIBP2P_BOOTNODES\nNITRO_KEY_ID=$NITRO_KEY_ID\n" > $ENV_FILE
   else
     if [ ! -f "$ENV_FILE" ]; then
-      info "begin to init env file from prompt"
+      echo "begin to init env file from prompt"
 
       confirm_tea_id
       echo "TEA_ID=$TEA_ID" > $ENV_FILE
@@ -107,21 +91,21 @@ set -eu
 
 sudo yum -y install git || true
 
-info "begin to pre settings..."
+echo "begin to pre settings..."
 pre_settings
-completed "pre settings completed"
+echo "pre settings completed"
 
-info "begin to install dependencies..."
+echo "begin to install dependencies..."
 ./aws-prepare.sh
-completed "install dependencies completed"
+echo "install dependencies completed"
 
-info "begin to start enclave runtime..."
+echo "begin to start enclave runtime..."
 ./enclave.sh clean || true
 ./enclave.sh docker
 ./enclave.sh $RUN_MODE
-completed "start enclave runtime completed"
+echo "start enclave runtime completed"
 
-info "begin to start client..."
+echo "begin to start client..."
 sudo docker compose -f docker-compose-b.yaml down || true
 sudo docker compose -f docker-compose-b.yaml up -d
-completed "start client completed"
+echo "start client completed"
