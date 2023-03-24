@@ -20,6 +20,8 @@ sudo yum install -y gcc libgcc kernel-devel make ncurses-devel
 . ./docker_install.sh
 echo "install basic dependencies completed"
 
+CURRENT_DIR="$pwd"
+
 # install make 4.3
 wget https://ftp.gnu.org/gnu/make/make-4.3.tar.gz
 tar -xzvf make-4.3.tar.gz
@@ -29,7 +31,7 @@ make -j$(nproc) && sudo make install
 cd /usr/bin/
 sudo mv make make.bak # backup
 sudo ln -sv /usr/local/make/bin/make /usr/bin/make
-cd -
+cd $CURRENT_DIR
 rm make-4.3.tar.gz
 rm -rf make-4.3
 echo "install make 4.3 completed"
@@ -40,7 +42,7 @@ tar -xzvf glibc-2.29.tar.gz && cd glibc-2.29/
 mkdir build && cd build
 ../configure --prefix=/usr --disable-profile --enable-add-ons --with-headers=/usr/include --with-binutils=/usr/bin
 make -j$(nproc) && sudo make install
-cd -
+cd $CURRENT_DIR
 rm glibc-2.29.tar.gz
 rm -rf glibc-2.29
 echo "install glibc 2.29 completed"
@@ -60,7 +62,7 @@ if [ -n $1 ] && [ $1 = "tool" ]; then
   LDFLAGS="-L/usr/local/lib -Wl,-rpath=/usr/local/lib" ./configure --prefix=/usr/local
   make -j$(nproc)
   sudo make install
-  cd ~
+  cd $CURRENT_DIR
   rm libevent-2.1.11-stable.tar.gz tmux-3.0a.tar.gz
   rm -rf libevent-2.1.11-stable
   rm -rf tmux-3.0a
@@ -95,12 +97,11 @@ if [ -n $1 ] && [ $1 = "tool" ]; then
     mkdir ~/musl && cd ~/musl
     wget https://musl.libc.org/releases/musl-1.2.2.tar.gz
     tar xzvf musl-1.2.2.tar.gz
-    cd -
     cd ~/musl/musl-1.2.2/
     ./configure
     make -j$(nproc)
     sudo make install
-    cd -
+    cd $CURRENT_DIR
   fi
 else
   sudo yum install tmux -y || true
