@@ -20,7 +20,7 @@ sudo yum install -y gcc libgcc kernel-devel make ncurses-devel
 . ./docker_install.sh
 echo "install basic dependencies completed"
 
-CURRENT_DIR="$pwd"
+CURRENT_DIR=${pwd}
 
 # install make 4.3
 wget https://ftp.gnu.org/gnu/make/make-4.3.tar.gz
