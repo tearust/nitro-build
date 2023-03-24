@@ -29,7 +29,7 @@ make -j$(nproc) && sudo make install
 cd /usr/bin/
 sudo mv make make.bak # backup
 sudo ln -sv /usr/local/make/bin/make /usr/bin/make
-cd ~
+cd -
 rm make-4.3.tar.gz
 rm -rf make-4.3
 echo "install make 4.3 completed"
@@ -40,7 +40,7 @@ tar -xzvf glibc-2.29.tar.gz && cd glibc-2.29/
 mkdir build && cd build
 ../configure --prefix=/usr --disable-profile --enable-add-ons --with-headers=/usr/include --with-binutils=/usr/bin
 make -j$(nproc) && sudo make install
-cd ~
+cd -
 rm glibc-2.29.tar.gz
 rm -rf glibc-2.29
 echo "install glibc 2.29 completed"
