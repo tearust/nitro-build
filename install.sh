@@ -105,7 +105,7 @@ pre_settings() {
 
 set -eu
 
-sudo yum -y install git
+sudo yum -y install git || true
 
 info "begin to pre settings..."
 pre_settings
