@@ -41,7 +41,9 @@ wget https://ftp.gnu.org/gnu/glibc/glibc-2.29.tar.gz
 tar -xzvf glibc-2.29.tar.gz && cd glibc-2.29/
 mkdir build && cd build
 ../configure --prefix=/usr --disable-profile --enable-add-ons --with-headers=/usr/include --with-binutils=/usr/bin
+set +e
 make -j$(nproc) && sudo make install
+set -e
 cd $RESOURCE_DIR
 rm glibc-2.29.tar.gz
 rm -rf glibc-2.29
