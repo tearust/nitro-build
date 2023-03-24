@@ -87,7 +87,7 @@ pre_settings() {
   fi
 }
 
-set -eu
+set -e
 
 sudo yum -y install git || true
 
