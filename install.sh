@@ -120,6 +120,6 @@ info "begin to start enclave runtime..."
 completed "start enclave runtime completed"
 
 info "begin to start client..."
-docker compose -f docker-compose-b.yaml down || true
-docker compose -f docker-compose-b.yaml up -d
+sudo docker compose -f docker-compose-b.yaml down || true
+sudo docker compose -f docker-compose-b.yaml up -d
 completed "start client completed"

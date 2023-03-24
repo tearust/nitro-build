@@ -27,7 +27,7 @@ elif [ $1 = "debug" ]; then
 
   restart_vsock_proxy
   nitro-cli run-enclave --eif-path enclave_app.eif --cpu-count 2 --enclave-cid 6 --memory 1024 --debug-mode
-  if [ $CONSOLE = "on" ]
+  if [ $CONSOLE = "on" ]; then
     console_print
   fi
 elif [ $1 = "run" ]; then
