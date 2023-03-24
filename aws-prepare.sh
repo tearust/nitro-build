@@ -101,7 +101,7 @@ if [ -n $1 ] && [ $1 = "tool" ]; then
     cd -
   fi
 else
-  sudo yum install tmux -y
+  sudo yum install tmux -y || true
 fi
 
 echo "install dependencies completed"
