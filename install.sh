@@ -3,11 +3,9 @@
 TEA_ID=$1
 MACHINE_OWNER=$2
 AWS_REGION=$3
-RUN_MODE=$4
 : ${TEA_ID:=""}
 : ${MACHINE_OWNER:=""}
 : ${AWS_REGION:=""}
-: ${RUN_MODE:="debug"}
 
 confirm_tea_id() {
   echo "please enter your tea id...(hex encoded, ie. 0x0000000000000000000000000000000000000000000000000000000000000000)"
@@ -99,13 +97,4 @@ echo "begin to install dependencies..."
 ./aws-prepare.sh
 echo "install dependencies completed"
 
-echo "begin to start enclave runtime..."
-./enclave.sh clean || true
-./enclave.sh docker
-./enclave.sh $RUN_MODE
-echo "start enclave runtime completed"
-
-echo "begin to start client..."
-sudo docker compose -f docker-compose-b.yaml down || true
-sudo docker compose -f docker-compose-b.yaml up -d
-echo "start client completed"
+newgrp docker
