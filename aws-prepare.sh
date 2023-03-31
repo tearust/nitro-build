@@ -3,6 +3,7 @@
 set -e
 
 # install nitro cli related packages
+sudo yum install -y amazon-linux-extras
 sudo amazon-linux-extras install aws-nitro-enclaves-cli -y
 sudo yum install aws-nitro-enclaves-cli-devel -y
 sudo yum -y install git
