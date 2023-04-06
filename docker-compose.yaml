@@ -1,6 +1,18 @@
 version: "3.1"
 
 services:
+  ipfs:
+    image: ipfs/go-ipfs:v0.8.0
+    container_name: ipfs
+    network_mode: host
+    volumes:
+      - .ipfs_data:/data/ipfs
+      - .ipfs:/ipfs/config
+    environment:
+      IPFS_SWARM_KEY_FILE: /ipfs/config/swarm.key
+    entrypoint: []
+    command: sh -c "/ipfs/config/start_ipfs daemon --migrate --enable-pubsub-experiment"
+
   parent-instance-client:
     image: tearust/parent-instance-client:nitro
     container_name: client
@@ -35,8 +47,14 @@ services:
       STATE_MAGIC_NUMBER: 200
       APPLY_VALIDATOR: "true"
       PERSIST_PATH: /tokenstate/persist
+      IPFS_URL_BASE: http://localhost:5001
       RUST_BACKTRACE: full
       MALLOC_CONF: prof:true
+
+      WAIT_HOSTS: ipfs:5001
+      WAIT_TIMEOUT: 300
+      WAIT_SLEEP_INTERVAL: 5
+
     logging:
       driver: json-file
       options:

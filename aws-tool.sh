@@ -7,7 +7,7 @@ SINGLE_TAR="single.tar"
 KMS_ROLE_NAME="KMS-test"
 
 function tar_files() {
-    SCRIPT_FILES="$SCRIPT_TAR *.sh *.yaml *.json .env .libp2p"
+    SCRIPT_FILES="$SCRIPT_TAR *.sh *.yaml *.json .env .libp2p .ipfs"
     CLINET_FILES="$CLIENT_TAR client-runner client-app manifest.yaml genesis.json"
 
     if [ $TAR_FILE_MODE = "all" ]; then

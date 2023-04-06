@@ -36,7 +36,7 @@ elif [ $1 = "run" ]; then
 elif [ $1 = "list" ]; then
   sudo nitro-cli describe-enclaves | jq
 elif [ $1 = "clean" ]; then
-  sudo nitro-cli describe-enclaves | jq '.[0].EnclaveID' | xargs nitro-cli terminate-enclave --enclave-id
+  sudo nitro-cli describe-enclaves | jq '.[0].EnclaveID' | xargs sudo nitro-cli terminate-enclave --enclave-id
 elif [ $1 = "console" ]; then
   console_print
 elif [ $1 = "client" ]; then
