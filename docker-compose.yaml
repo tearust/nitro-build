@@ -41,9 +41,9 @@ services:
       LIBP2P_NODE_KEY_PATH: /libp2p/key
       LIBP2P_BOOTNODES: ${LIBP2P_BOOTNODES}
       LIBP2P_ENABLE_RELAY_PEERS: "true"
-      LIBP2P_SUPPORTED_PROTOCOLS: tea-0.14
-      LIBP2P_AGENT_PROTOCOL: tea-0.14
-      LIBP2P_VERSION: 0.14
+      LIBP2P_SUPPORTED_PROTOCOLS: tea-0.15
+      LIBP2P_AGENT_PROTOCOL: tea-0.15
+      LIBP2P_VERSION: 0.15
       STATE_MAGIC_NUMBER: 200
       APPLY_VALIDATOR: "true"
       PERSIST_PATH: /tokenstate/persist
@@ -51,12 +51,6 @@ services:
       RUST_BACKTRACE: full
       MALLOC_CONF: prof:true
 
-      WAIT_HOSTS: ipfs:5001
+      WAIT_HOSTS: localhost:5001
       WAIT_TIMEOUT: 300
       WAIT_SLEEP_INTERVAL: 5
-
-    logging:
-      driver: json-file
-      options:
-        max-size: 20m
-        max-file: 5

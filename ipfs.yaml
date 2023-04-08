@@ -1,0 +1,14 @@
+version: "3.1"
+
+services:
+  ipfs:
+    image: ipfs/go-ipfs:v0.8.0
+    container_name: ipfs
+    network_mode: host
+    volumes:
+      - .ipfs_data:/data/ipfs
+      - .ipfs:/ipfs/config
+    environment:
+      IPFS_SWARM_KEY_FILE: /ipfs/config/swarm.key
+    entrypoint: []
+    command: sh -c "/ipfs/config/start_ipfs daemon --migrate --enable-pubsub-experiment"
