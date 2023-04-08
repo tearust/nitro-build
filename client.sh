@@ -2,7 +2,7 @@
 
 source ~/.env
 
-docker-compose -f ipfs.yaml up --no-recreate
+docker-compose -f ipfs.yaml up --no-recreate -d
 
 if [ -n $1 ] && [ $1 = "a" ]; then
 	ENCLAVE_CID=6 \
