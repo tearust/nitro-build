@@ -7,6 +7,8 @@ AWS_REGION=$3
 : ${MACHINE_OWNER:=""}
 : ${AWS_REGION:=""}
 
+RESOURCE_DIR=$HOME/nitro-build
+
 confirm_tea_id() {
   echo "please enter your tea id...(hex encoded, ie. 0x0000000000000000000000000000000000000000000000000000000000000000)"
   set +e
@@ -49,7 +51,6 @@ pre_settings() {
   sudo yum -y install git || true
 
   echo "begin to git clone resources..."
-  RESOURCE_DIR=$HOME/nitro-build
   if [ ! -d "$RESOURCE_DIR" ]; then
   	git clone -b main https://github.com/tearust/nitro-build
   	cd $RESOURCE_DIR
@@ -92,7 +93,7 @@ pre_settings
 echo "pre settings completed"
 
 echo "begin to install dependencies..."
-./aws-prepare.sh
+./aws-prepare.sh "normal" $RESOURCE_DIR
 echo "install dependencies completed"
 
 newgrp docker

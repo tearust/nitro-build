@@ -2,6 +2,9 @@
 
 set -e
 
+RESOURCE_DIR=$2
+: ${RESOURCE_DIR:="$HOME"}
+
 # install nitro cli related packages
 sudo yum install -y amazon-linux-extras
 sudo amazon-linux-extras install aws-nitro-enclaves-cli -y
@@ -16,12 +19,10 @@ sudo systemctl start docker && sudo systemctl enable docker
 sudo yum install bison -y
 sudo yum install -y gcc libgcc kernel-devel make ncurses-devel
 
-# sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
-# sudo chmod +x /usr/local/bin/docker-compose
-. ./docker_install.sh
+sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose
+sudo chmod +x /usr/bin/docker-compose
+# . ./docker_install.sh
 echo "install basic dependencies completed"
-
-RESOURCE_DIR=$HOME/nitro-build
 
 # install make 4.3
 wget https://ftp.gnu.org/gnu/make/make-4.3.tar.gz
@@ -33,7 +34,7 @@ cd /usr/bin/
 sudo mv make make.bak # backup
 sudo ln -sv /usr/local/make/bin/make /usr/bin/make
 cd $RESOURCE_DIR
-rm make-4.3.tar.gz
+rm -f make-4.3.tar.gz
 rm -rf make-4.3
 echo "install make 4.3 completed"
 
@@ -46,7 +47,7 @@ set +e
 make -j$(nproc) && sudo make install
 set -e
 cd $RESOURCE_DIR
-rm glibc-2.29.tar.gz
+rm -f glibc-2.29.tar.gz
 rm -rf glibc-2.29
 echo "install glibc 2.29 completed"
 
@@ -66,7 +67,7 @@ if [ -n $1 ] && [ $1 = "tool" ]; then
   make -j$(nproc)
   sudo make install
   cd $RESOURCE_DIR
-  rm libevent-2.1.11-stable.tar.gz tmux-3.0a.tar.gz
+  rm -f libevent-2.1.11-stable.tar.gz tmux-3.0a.tar.gz
   rm -rf libevent-2.1.11-stable
   rm -rf tmux-3.0a
   echo "install tmux completed"
@@ -85,9 +86,12 @@ if [ -n $1 ] && [ $1 = "tool" ]; then
   	git clone -b ubuntu_lint https://github.com/raindust/dotfiles ~/dotfiles
   fi
   cd ~/dotfiles
+  sudo localedef -i en_US -f UTF-8 en_US.UTF-8
+  set +e
   ./apply.sh
   tmux source ~/.tmux.conf
   ~/.tmux/plugins/tpm/bin/install_plugins
+  set -e
 
   if [ -n $2 ] && [ $2 = "dev" ]; then
     # install general development related packages
@@ -108,7 +112,7 @@ if [ -n $1 ] && [ $1 = "tool" ]; then
   fi
 else
   sudo yum install tmux -y || true
+  sudo localedef -i en_US -f UTF-8 en_US.UTF-8
 fi
 
 echo "install dependencies completed"
-sudo localedef -i en_US -f UTF-8 en_US.UTF-8
