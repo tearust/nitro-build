@@ -10,6 +10,7 @@ sudo yum install -y amazon-linux-extras
 sudo amazon-linux-extras install aws-nitro-enclaves-cli -y
 sudo yum install aws-nitro-enclaves-cli-devel -y
 sudo yum -y install git
+sudo yum -y install wget
 sudo yum install openssl11 -y
 sudo usermod -aG ne ec2-user
 sudo usermod -aG docker ec2-user

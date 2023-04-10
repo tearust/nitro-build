@@ -1,0 +1,113 @@
+actors:
+  com.tea.console-service-actor:
+    path: /tearust/console_service_actor.wasm
+
+  com.tea.ra-actor:
+    path: /tearust/ra_actor.wasm
+
+  com.tea.pressure-test:
+    path: /tearust/pressure_test.wasm
+    depends_on:
+      - client: layer1
+
+  com.tea.replica-service-actor:
+    path: /tearust/replica_service_actor.wasm
+
+  com.tea.tokenstate-service-actor:
+    path: /tearust/tokenstate_service_actor.wasm
+    depends_on:
+      - client: layer1
+
+  com.tea.layer1-service-actor:
+    path: /tearust/layer1_service_actor.wasm
+    depends_on:
+      - client: layer1
+
+  com.tea.tappstore-actor:
+    path: /tearust/tappstore_actor.wasm
+    depends_on:
+      - client: layer1
+
+  # system-miner-gas-actor:
+  #   path: /tearust/system_minergas_signed.wasm
+  #   depends_on:
+  #     # tappstore-b-actor needed only by B type nodes, which is opposite to tappstore-actor
+  #     - client: layer1
+  #       enable: false
+
+  com.tea.client-actor:
+    path: /tearust/client_actor.wasm
+    depends_on:
+      #   # tappstore-b-actor needed only by B type nodes, which is opposite to tappstore-actor
+      - client: layer1
+        enable: false
+
+  com.tea.seat-actor:
+    path: /tearust/seat_actor.wasm
+    depends_on:
+      # tappstore-b-actor needed only by B type nodes, which is opposite to tappstore-actor
+      - client: layer1
+        enable: false
+
+  com.tea.leaderboard-actor:
+    path: /tearust/leaderboard_actor.wasm
+    depends_on:
+      # tappstore-b-actor needed only by B type nodes, which is opposite to tappstore-actor
+      - client: layer1
+        enable: false
+
+  com.tea.cml-actor:
+    path: /tearust/cml_actor.wasm
+    depends_on:
+      # tappstore-b-actor needed only by B type nodes, which is opposite to tappstore-actor
+      - client: layer1
+        enable: false
+
+  com.tea.seed-actor:
+    path: /tearust/seed_actor.wasm
+    depends_on:
+      # tappstore-b-actor needed only by B type nodes, which is opposite to tappstore-actor
+      - client: layer1
+        enable: false
+
+  com.tea.fluencer-actor:
+    path: /tearust/fluencer_actor.wasm
+    depends_on:
+      - client: layer1
+        enable: false
+
+  com.tea.devportal-actor:
+    path: /tearust/devportal_actor.wasm
+    depends_on:
+      - client: layer1
+        enable: false
+
+capabilities:
+  - cap_id: tea:adapter
+    depends_on:
+      - client: adapter
+  - cap_id: tea:http
+    depends_on:
+      - client: http
+  - cap_id: tea:ipfs
+  - cap_id: tea:libp2p
+    depends_on:
+      - client: libp2p
+  - cap_id: tea:nitro
+  - cap_id: tea:env
+  - cap_id: tea:layer1
+    depends_on:
+      - client: layer1
+  - cap_id: tea:persist
+    depends_on:
+      - client: persist
+  - cap_id: tea:console
+  - cap_id: tea:replica
+  - cap_id: tea:tokenstate
+  - cap_id: tea:statereceiver
+  - cap_id: tea:keyvalue
+  - cap_id: tea:crypto
+  - cap_id: tea:orbitdb
+    depends_on:
+      - client: orbitdb
+  # - cap_id: tea:third-api

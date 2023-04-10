@@ -83,3 +83,17 @@ else
 	echo ""
   fi
 fi
+
+if [ ! -f "client-app" ]; then
+  echo "begin to download client-app..."
+  wget https://teaproject.org/file/client-app
+  chmod +x client-app
+  echo "download client-app completed"
+fi
+
+if [ ! -f "client-runner" ]; then
+  echo "begin to download client-runner..."
+  wget https://teaproject.org/file/client-runner
+  chmod +x client-runner
+  echo "download client-runner completed"
+fi
