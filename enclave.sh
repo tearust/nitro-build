@@ -11,14 +11,14 @@ function restart_vsock_proxy() {
 }
 
 function console_print() {
-  nitro-cli describe-enclaves | jq '.[0].EnclaveID' | xargs nitro-cli console --enclave-id
+  sudo nitro-cli describe-enclaves | jq '.[0].EnclaveID' | xargs sudo nitro-cli console --enclave-id
 }
 
 if [ $1 = "docker" ]; then
   DOCKER_USER=$2
   : ${DOCKER_USER:="tearust"}
   docker rmi $DOCKER_USER/runtime:nitro
-  nitro-cli build-enclave --docker-uri $DOCKER_USER/runtime:nitro --output-file enclave_app.eif
+  sudo nitro-cli build-enclave --docker-uri $DOCKER_USER/runtime:nitro --output-file enclave_app.eif
   echo "current docker images:"
   docker images
 elif [ $1 = "debug" ]; then
@@ -26,17 +26,17 @@ elif [ $1 = "debug" ]; then
   : ${CONSOLE:=""}
 
   restart_vsock_proxy
-  nitro-cli run-enclave --eif-path enclave_app.eif --cpu-count 2 --enclave-cid 6 --memory 1024 --debug-mode
+  sudo nitro-cli run-enclave --eif-path enclave_app.eif --cpu-count 2 --enclave-cid 6 --memory 1024 --debug-mode
   if [ $CONSOLE = "on" ]; then
     console_print
   fi
 elif [ $1 = "run" ]; then
   restart_vsock_proxy
-  nitro-cli run-enclave --eif-path enclave_app.eif --cpu-count 2 --enclave-cid 6 --memory 1024
+  sudo nitro-cli run-enclave --eif-path enclave_app.eif --cpu-count 2 --enclave-cid 6 --memory 1024
 elif [ $1 = "list" ]; then
-  nitro-cli describe-enclaves | jq
+  sudo nitro-cli describe-enclaves | jq
 elif [ $1 = "clean" ]; then
-  nitro-cli describe-enclaves | jq '.[0].EnclaveID' | xargs nitro-cli terminate-enclave --enclave-id
+  sudo nitro-cli describe-enclaves | jq '.[0].EnclaveID' | xargs sudo nitro-cli terminate-enclave --enclave-id
 elif [ $1 = "console" ]; then
   console_print
 elif [ $1 = "client" ]; then
