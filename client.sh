@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source ~/.env
+source $PWD/.env
 
 docker-compose -f ipfs.yaml up --no-recreate -d
 

@@ -22,6 +22,6 @@ echo "begin to start enclave runtime..."
 echo "start enclave runtime completed"
 
 echo "begin to start client..."
-killall client-runner
+killall -q client-runner
 ./client.sh
 echo "start client completed"
