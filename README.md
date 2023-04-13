@@ -48,8 +48,8 @@ In the above image we choose the "Asia Pacific (Seoul)" region and the region co
 
 To ensure a successful instance launch, pay closse attention to the following parts in the 'Launch an Instance' steps：
 
-1. Choose the "Amazon Linux" OS like the following:
-<img width="911" alt="图片" src="https://user-images.githubusercontent.com/3713930/227702887-e9659ccd-50fa-4d01-81f3-450afbef0186.png">
+1. Choose the "Amazon Linux" OS like the following (DO NOT use the default "Amazon Linux 2023 AMI" option):
+<img width="931" alt="图片" src="https://user-images.githubusercontent.com/3713930/231627468-46034243-0e71-4ffc-b663-b4ab5028235c.png">
 
 2. Choose an instance type that supports nitro. We use the "c5a.xlarge" here
 <img width="940" alt="图片" src="https://user-images.githubusercontent.com/3713930/227702951-66326927-bdef-4cc8-a400-d50f42a124a6.png">
