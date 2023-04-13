@@ -52,7 +52,7 @@ To ensure a successful instance launch, pay closse attention to the following pa
 <img width="931" alt="图片" src="https://user-images.githubusercontent.com/3713930/231627468-46034243-0e71-4ffc-b663-b4ab5028235c.png">
 
 2. Choose an instance type that supports nitro. We use the "c5a.xlarge" here
-<img width="940" alt="图片" src="https://user-images.githubusercontent.com/3713930/227702951-66326927-bdef-4cc8-a400-d50f42a124a6.png">
+<img width="937" alt="图片" src="https://user-images.githubusercontent.com/3713930/231720559-6664f7b3-9f25-4901-b0f4-6867ade67bea.png">
 
 3. Use the security group we updated (created) above:
 <img width="938" alt="图片" src="https://user-images.githubusercontent.com/3713930/227703076-21f6153f-3d7d-40ab-b902-1f073b8f9ea1.png">
