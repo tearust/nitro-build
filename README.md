@@ -96,11 +96,8 @@ cd ~/nitro-build
 
 Then simply run the following script to start the node with parts both inside and outside the enclave:
 ```
-./start.sh
+./start.sh "{YOUR_MACHINE_ID}" "{YOUR_MACHINE_OWNER}" "{REGION_CODE}"
 ```
-Or using the following command to run with overriding enviroment settings (TEA_ID, MACHINE_ID, etc):
-```
-./start.sh "0x0000000000000000000000000000000000000000000000000000000000000000" "0xbd6D4f56b59e45ed25c52Eab7EFf2c626e083db9" "ap-northeast-2"
-```
+Note that replace your real machine_id, machine_owner and region_code for the above command. 
+e.g. ``` ./start.sh "0x0000000000000000000000000000000000000000000000000000000000000000" "0xbd6D4f56b59e45ed25c52Eab7EFf2c626e083db9" "ap-northeast-2" ```
 
-The above command uses the region code of `ap-northeast-2` but you should change this according to the region you use.
