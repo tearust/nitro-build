@@ -25,6 +25,9 @@ sudo chmod +x /usr/bin/docker-compose
 # . ./docker_install.sh
 echo "install basic dependencies completed"
 
+./time.sh
+echo "install time service related completed"
+
 # install make 4.3
 wget https://ftp.gnu.org/gnu/make/make-4.3.tar.gz
 tar -xzvf make-4.3.tar.gz
