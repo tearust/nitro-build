@@ -1,10 +1,6 @@
 actors:
   - id: com.tea.replica-service-actor
     path: /tearust/replica_service_actor.wasm
-  - id: com.tea.tokenstate-service-actor
-    path: /tearust/tokenstate_service_actor.wasm
-    depends_on:
-      - client: layer1
   - id: com.tea.layer1-service-actor
     path: /tearust/layer1_service_actor.wasm
     depends_on:
@@ -19,6 +15,10 @@ actors:
       - client: layer1
   - id: com.tea.tappstore-actor
     path: /tearust/tappstore_actor.wasm
+    depends_on:
+      - client: layer1
+  - id: com.tea.tokenstate-service-actor
+    path: /tearust/tokenstate_service_actor.wasm
     depends_on:
       - client: layer1
   - id: com.tea.client-actor
