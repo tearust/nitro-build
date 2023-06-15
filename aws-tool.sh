@@ -110,7 +110,7 @@ elif [ $1 = "create" ]; then
     SECURITY_GROUP_IDS=$4
     : ${IMAGE_ID:="ami-013218fccb68a90d4"}
     : ${KEY_NAME:="aws-tea-northeast2"}
-    : ${SECURITY_GROUP_IDS:="sg-03b0f4504627867f0"}
+    : ${SECURITY_GROUP_IDS:="sg-0649cb99605378ead"}
 
     aws ec2 run-instances \
         --image-id $IMAGE_ID \
