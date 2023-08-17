@@ -16,3 +16,4 @@ client-runner
 .layer1/
 .env
 local_tools.sh
+local_tools_alpha.sh

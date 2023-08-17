@@ -26,13 +26,13 @@ elif [ $1 = "debug" ]; then
   : ${CONSOLE:=""}
 
   restart_vsock_proxy
-  sudo nitro-cli run-enclave --eif-path enclave_app.eif --cpu-count 2 --enclave-cid 6 --memory 3072 --debug-mode
+  sudo nitro-cli run-enclave --eif-path enclave_app.eif --cpu-count 2 --enclave-cid 6 --memory 6144 --debug-mode
   if [ $CONSOLE = "on" ]; then
     console_print
   fi
 elif [ $1 = "run" ]; then
   restart_vsock_proxy
-  sudo nitro-cli run-enclave --eif-path enclave_app.eif --cpu-count 2 --enclave-cid 6 --memory 3072
+  sudo nitro-cli run-enclave --eif-path enclave_app.eif --cpu-count 2 --enclave-cid 6 --memory 6144
 elif [ $1 = "list" ]; then
   sudo nitro-cli describe-enclaves | jq
 elif [ $1 = "clean" ]; then
