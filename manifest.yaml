@@ -17,21 +17,21 @@ actors:
       - client: layer1
   - id: com.tea.client-actor
     path: /tearust/client_actor.wasm
-    instance_count: 1
+    instance_count: 3
     depends_on:
       #   # tappstore-b-actor needed only by B type nodes, which is opposite to tappstore-actor
       - client: layer1
         enable: false
   - id: com.tea.seat-actor
     path: /tearust/seat_actor.wasm
-    instance_count: 1
+    instance_count: 3
     depends_on:
       # tappstore-b-actor needed only by B type nodes, which is opposite to tappstore-actor
       - client: layer1
         enable: false
   - id: com.tea.leaderboard-actor
     path: /tearust/leaderboard_actor.wasm
-    instance_count: 1
+    instance_count: 3
     depends_on:
       # tappstore-b-actor needed only by B type nodes, which is opposite to tappstore-actor
       - client: layer1
@@ -39,27 +39,27 @@ actors:
 
   - id: com.tea.cml-actor
     path: /tearust/cml_actor.wasm
-    instance_count: 1
+    instance_count: 3
     depends_on:
       # tappstore-b-actor needed only by B type nodes, which is opposite to tappstore-actor
       - client: layer1
         enable: false
   - id: com.tea.seed-actor
     path: /tearust/seed_actor.wasm
-    instance_count: 1
+    instance_count: 3
     depends_on:
       # tappstore-b-actor needed only by B type nodes, which is opposite to tappstore-actor
       - client: layer1
         enable: false
   - id: com.tea.fluencer-actor
     path: /tearust/fluencer_actor.wasm
-    instance_count: 1
+    instance_count: 3
     depends_on:
       - client: layer1
         enable: false
   - id: com.tea.devportal-actor
     path: /tearust/devportal_actor.wasm
-    instance_count: 1
+    instance_count: 3
     depends_on:
       - client: layer1
         enable: false
