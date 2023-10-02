@@ -1,4 +1,5 @@
 {
+	"network": "alpha",
 	"contract_addresses": {
 		"lock": "0xFf675712BabA64dA7fF86e12105c9b35Fe7a48F6",
 		"storage": "0x8A24Fd9977e995592eEbFBC768962E610edCc394",
