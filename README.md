@@ -48,11 +48,11 @@ In the above image we choose the "Asia Pacific (Seoul)" region and the region co
 
 To ensure a successful instance launch, pay closse attention to the following parts in the 'Launch an Instance' steps：
 
-1. Choose the "Amazon Linux" OS like the following (DO NOT use the default "Amazon Linux 2023 AMI" option):
-<img width="931" alt="图片" src="https://user-images.githubusercontent.com/3713930/231627468-46034243-0e71-4ffc-b663-b4ab5028235c.png">
+1. Choose the "Amazon Linux" OS like the following (DO NOT use the default "Amazon Linux 2023 AMI" option, and architecture choose "64-bit(Arm)"):
+<img width="933" alt="图片" src="https://github.com/tearust/nitro-build/assets/3713930/53cebe9b-38fc-4ec4-8c91-8abbf3f9ede5">
 
-2. Choose an instance type that supports nitro. We use the "c5a.xlarge" here
-<img width="937" alt="图片" src="https://user-images.githubusercontent.com/3713930/231720559-6664f7b3-9f25-4901-b0f4-6867ade67bea.png">
+2. Choose an instance type that supports nitro. We use the "c6g.xlarge" here
+<img width="935" alt="图片" src="https://github.com/tearust/nitro-build/assets/3713930/44fc708d-0753-4520-9b91-7b80cfd555d1">
 
 3. Use the security group we updated (created) above:
 <img width="938" alt="图片" src="https://user-images.githubusercontent.com/3713930/227703076-21f6153f-3d7d-40ab-b902-1f073b8f9ea1.png">
