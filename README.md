@@ -35,7 +35,8 @@ Finally, enter the new role name and remember it for future use.
 
 ### Prepare the security group
 Select "EC2 -> Security Groups" page and choose a security group you want to modify (or create a new one) and add inbound rules as follows:
-<img width="1300" alt="图片" src="https://user-images.githubusercontent.com/3713930/227702350-e21d191f-cd1e-49ec-90b9-1b40172775ce.png">
+<img width="1285" alt="图片" src="https://github.com/tearust/nitro-build/assets/3713930/2a7094c3-9c07-4565-8db8-58a299f41403">
+
 
 These input ports will be filtered after the node is started.
 
