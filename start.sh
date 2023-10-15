@@ -22,5 +22,6 @@ echo "begin to start enclave runtime..."
 echo "start enclave runtime completed"
 
 echo "begin to start client..."
-./client.sh
+docker-compose -f docker-compose-b.yaml down
+docker-compose -f docker-compose-b.yaml up
 echo "start client completed"
