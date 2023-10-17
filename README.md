@@ -97,6 +97,10 @@ cd ~/nitro-build
 
 Then simply run the following script to start the node with parts both inside and outside the enclave:
 ```
+./start.sh
+```
+or run the following command if you want to change settings when running:
+```
 ./start.sh "{YOUR_MACHINE_ID}" "{YOUR_MACHINE_OWNER}" "{REGION_CODE}"
 ```
 Note that replace your real machine_id, machine_owner and region_code for the above command. 
