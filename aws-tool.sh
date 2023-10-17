@@ -108,14 +108,14 @@ elif [ $1 = "create" ]; then
     IMAGE_ID=$2
     KEY_NAME=$3
     SECURITY_GROUP_IDS=$4
-    : ${IMAGE_ID:="ami-013218fccb68a90d4"}
+    : ${IMAGE_ID:="ami-091dc2d233bcce101"}
     : ${KEY_NAME:="aws-tea-northeast2"}
-    : ${SECURITY_GROUP_IDS:="sg-0ebb1429f0c627069"}
+    : ${SECURITY_GROUP_IDS:="sg-a96a74d2"}
 
     aws ec2 run-instances \
         --image-id $IMAGE_ID \
         --count 1 \
-        --instance-type c5a.xlarge \
+        --instance-type c6g.xlarge \
         --key-name $KEY_NAME \
         --security-group-ids $SECURITY_GROUP_IDS \
         --enclave-options 'Enabled=true' \
