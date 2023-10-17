@@ -1,13 +1,14 @@
 {
 	"network": "alpha",
 	"contract_addresses": {
-		"lock": "0xFf675712BabA64dA7fF86e12105c9b35Fe7a48F6",
-		"storage": "0x8A24Fd9977e995592eEbFBC768962E610edCc394",
-		"maintainer": "0xc5376998Bd1E3bBDb81Db20ce5ea804e514c24Ac",
-		"token_vesting": "0x6b4280CB4ec594fa496abf8a1F9Ab261446DBDc1",
-		"erc721": "0x08e27b8CFB26580C301CF5322aEd20a8c12e9856"
+		"lock": "0xA2B695D8D05dB46132666ccDf2C2c29dA9338dc4",
+		"storage": "0xa89D5B8A4a7d78F0B973b5cFD9Bf0D611eBCFb17",
+		"maintainer": "0x83b25B923bf07d13e77CD40eC0C22819b9b34dD0",
+		"token_vesting": "0xC284d32aa06F467cd4430E7dA23FaE3d33E2aabC",
+		"erc721": "0xE0e2F30a41518224e2D5a9a62D2C6D9aeEF55d5d"
 	},
-	"tappstore_id": "0x44809c2dA3f17C436D6c1f771784C35335f95242",
+	"tappstore_id": "0x4712377046382A56DFE5d700219d56613ABb276D",
+	"usdt_address": "0xC2C527C0CACF457746Bd31B2a698Fe89de2b6d49",
 	"chain_id": 5,
 	"mining_startup_nodes": [
 		{
