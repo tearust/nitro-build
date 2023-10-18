@@ -7,7 +7,7 @@ RUN_MODE=$4
 : ${TEA_ID:=""}
 : ${MACHINE_OWNER:=""}
 : ${AWS_REGION:=""}
-: ${RUN_MODE:="debug"}
+: ${RUN_MODE:="run"}
 
 set -e
 
@@ -23,5 +23,5 @@ echo "start enclave runtime completed"
 
 echo "begin to start client..."
 docker-compose -f docker-compose-b.yaml down
-docker-compose -f docker-compose-b.yaml up
+docker-compose -f docker-compose-b.yaml up -d
 echo "start client completed"
