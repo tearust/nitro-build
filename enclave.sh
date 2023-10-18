@@ -17,8 +17,8 @@ function console_print() {
 if [ $1 = "docker" ]; then
   DOCKER_USER=$2
   : ${DOCKER_USER:="tearust"}
-  docker rmi $DOCKER_USER/runtime:alpha-1.0
-  sudo nitro-cli build-enclave --docker-uri $DOCKER_USER/runtime:alpha-1.0 --output-file enclave_app.eif
+  docker rmi $DOCKER_USER/runtime:alpha-1.1
+  sudo nitro-cli build-enclave --docker-uri $DOCKER_USER/runtime:alpha-1.1 --output-file enclave_app.eif
   echo "current docker images:"
   docker images
 elif [ $1 = "debug" ]; then
@@ -41,7 +41,6 @@ elif [ $1 = "console" ]; then
   console_print
 elif [ $1 = "client" ]; then
   docker-compose down
-  docker rmi tearust/parent-instance-client:alpha-1.0
   docker-compose up
 elif [ $1 = "proxy" ]; then
   restart_vsock_proxy
