@@ -54,3 +54,9 @@ services:
       WAIT_HOSTS: localhost:5001
       WAIT_TIMEOUT: 300
       WAIT_SLEEP_INTERVAL: 5
+
+    logging:
+      driver: json-file
+      options:
+        max-size: 50m
+        max-file: 5
