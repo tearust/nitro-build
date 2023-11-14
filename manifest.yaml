@@ -1,7 +1,7 @@
 actors:
   - id: com.tea.replica-service-actor
     path: /tearust/replica_service_actor.wasm
-    instance_count: 5
+    instance_count: 6
   - id: com.tea.console-service-actor
     path: /tearust/console_service_actor.wasm
     instance_count: 2
@@ -10,12 +10,12 @@ actors:
     instance_count: 2
   - id: com.tea.tappstore-actor
     path: /tearust/tappstore_actor.wasm
-    instance_count: 3
+    instance_count: 6
     depends_on:
       - client: layer1
   - id: com.tea.tokenstate-service-actor
     path: /tearust/tokenstate_service_actor.wasm
-    instance_count: 5
+    instance_count: 6
     depends_on:
       - client: layer1
   - id: com.tea.payment-channel-actor
