@@ -3,6 +3,7 @@
 TEA_ID=$1
 MACHINE_OWNER=$2
 AWS_REGION=$3
+STARTUP_PROOF=$4
 : ${TEA_ID:=""}
 : ${MACHINE_OWNER:=""}
 : ${AWS_REGION:=""}
@@ -66,7 +67,7 @@ ENV_FILE=$RESOURCE_DIR/.env
 
 if [[ -n "$TEA_ID" && -n "$MACHINE_OWNER" && -n "$AWS_REGION" && -n "$LIBP2P_BOOTNODES" && -n "$NITRO_KEY_ID" ]]; then
   echo "begin to init env file through command line arguments"
-  printf "TEA_ID=$TEA_ID\nMACHINE_OWNER=$MACHINE_OWNER\nAWS_REGION=$AWS_REGION\nLIBP2P_BOOTNODES=$LIBP2P_BOOTNODES\nNITRO_KEY_ID=$NITRO_KEY_ID\n" > $ENV_FILE
+  printf "TEA_ID=$TEA_ID\nMACHINE_OWNER=$MACHINE_OWNER\nAWS_REGION=$AWS_REGION\nLIBP2P_BOOTNODES=$LIBP2P_BOOTNODES\nNITRO_KEY_ID=$NITRO_KEY_ID\nSTARTUP_PROOF=$STARTUP_PROOF\n" > $ENV_FILE
 else
   if [ ! -f "$ENV_FILE" ]; then
     echo "begin to init env file from prompt"
@@ -79,6 +80,9 @@ else
 
 		confirm_aws_region
     echo "AWS_REGION=$AWS_REGION\nLIBP2P_BOOTNODES=$LIBP2P_BOOTNODES\nNITRO_KEY_ID=$NITRO_KEY_ID\n" >> $ENV_FILE
+
+    # confirm startup proof later
+    echo "STARTUP_PROOF=$STARTUP_PROOF" >> $ENV_FILE
 
 	echo ""
   fi

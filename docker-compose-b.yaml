@@ -33,6 +33,7 @@ services:
       GENESIS_CONFIG_PATH: /tearust/data/genesis.json
       TEA_ID: "${TEA_ID}"
       MACHINE_OWNER: "${MACHINE_OWNER}"
+      STARTUP_PROOF: "${STARTUP_PROOF}"
       LIBP2P_NODE_KEY_PATH: /libp2p/key
       LIBP2P_BOOTNODES: ${LIBP2P_BOOTNODES}
       LIBP2P_SUPPORTED_PROTOCOLS: tea-0.15

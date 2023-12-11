@@ -3,16 +3,18 @@
 TEA_ID=$1
 MACHINE_OWNER=$2
 AWS_REGION=$3
-RUN_MODE=$4
+STARTUP_PROOF=$4
+RUN_MODE=$5
 : ${TEA_ID:=""}
 : ${MACHINE_OWNER:=""}
 : ${AWS_REGION:=""}
+: ${STARTUP_PROOF:=""}
 : ${RUN_MODE:="run"}
 
 set -e
 
 echo "begin to pre settings..."
-./pre-settings.sh $TEA_ID $MACHINE_OWNER $AWS_REGION
+./pre-settings.sh $TEA_ID $MACHINE_OWNER $AWS_REGION $STARTUP_PROOF
 echo "pre settings completed"
 
 echo "begin to start enclave runtime..."
