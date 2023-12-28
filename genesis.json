@@ -1,15 +1,15 @@
 {
-	"network": "beta",
+	"network": "alpha",
 	"contract_addresses": {
-		"lock": "0x0f08125fd7607b35629c40DeEDbbC5c053f0E9Dc",
-		"storage": "0x6687a134AD3d72c5E76198ebBfb3eD18490f9B98",
-		"maintainer": "0x9A46f3EDAa198FF348A06eC8b90437e442c96e4e",
-		"token_vesting": "0xd76dac37af33471324F51D0067417cA7d3Dddd67",
-		"erc721": "0x46a69bC8a1A29baCBEcD33279F184bf432da0C4D"
+		"lock": "0x5CE9DFa79246b3B53586A8884b100091cADa13bc",
+		"storage": "0x577A5e45d51Ff1F10951dDc8D6F385B1417E0879",
+		"maintainer": "0x3967604f6A11aCB0566b24f82BD29a117aEf296C",
+		"token_vesting": "0xa3b596624C998BEB849663731759AB4832451459",
+		"erc721": "0x52F32bB71EffA1d094bD9a2cb987abbe6B58d78a"
 	},
-	"tappstore_id": "0xcC324834C358eb40DDFBff4A445E3C272d5643Ef",
-	"usdt_address": "0xC2C527C0CACF457746Bd31B2a698Fe89de2b6d49",
-	"chain_id": 5,
+	"tappstore_id": "0xfA88f8350A0d27B473450dFa54A80f5276658aD4",
+	"usdt_address": "0xaa8e23fb1079ea71e0a56f48a2aa51851d8433d0",
+	"chain_id": 11155111,
 	"mining_startup_nodes": [
 		{
 			"machine_id": "df38cb4f12479041c8e8d238109ef2a150b017f382206e24fee932e637c2db7b",
@@ -40,7 +40,7 @@
 	"enclave_pcrs": [
 		[
 			"PCR0",
-			"b547376ab3738c5d09490dea2d283959a8d11666f8f72c78f0bfa47accc6f422c9a3065a996f6ef7238ef916dda7e802"
+			"f12edd11c14ae12580a3fee972d041bf6772e016b848b4a00cde2e55ee5a93267b32b8692eacae0d8b4d73b0ed88afb9"
 		],
 		[
 			"PCR1",
@@ -48,7 +48,7 @@
 		],
 		[
 			"PCR2",
-			"e1e0d22efb46c59c2aed741f56817e4f11e3a3eb6b7a6abbed7e6e00f2541e3707b5b163b5b9d3c7fb92c8276d32e4ff"
+			"90a9264d9493187c435c5f5a30400738fb500a81322158e7236403cebee8170482c3b57cbe3d829aae7e0bbc9a422249"
 		]
 	]
 }

@@ -15,5 +15,7 @@ client-runner
 .libp2p/
 .layer1/
 .env
-local_tools.sh
-local_tools_alpha.sh
+local_tools*
+persist-tools
+push-scripts*
+pull-logs*
