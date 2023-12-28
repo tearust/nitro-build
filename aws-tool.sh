@@ -133,6 +133,12 @@ elif [ $1 = "ssh" ]; then
 
     SSH_CMD=""
     ssh_with
+elif [ $1 = "cmd" ]; then
+    DNS_NAME=$2
+    SSH_CMD=$3
+    PEM_PATH=$4
+
+    ssh_with
 elif [ $1 = "tunnel" ]; then
     DNS_NAME=$2
     PEM_PATH=$3
