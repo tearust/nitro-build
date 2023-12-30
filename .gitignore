@@ -19,3 +19,4 @@ local_tools*
 persist-tools
 push-scripts*
 pull-logs*
+.conn_id
