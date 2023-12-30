@@ -14,7 +14,7 @@ services:
     command: sh -c "/ipfs/config/start_ipfs daemon --migrate --enable-pubsub-experiment"
 
   parent-instance-client:
-    image: tearust/parent-instance-client:alpha-1.5
+    image: tearust/parent-instance-client:beta-1.0
     container_name: client
     network_mode: host
     volumes:
@@ -35,7 +35,7 @@ services:
       LAYER1_WS_PROVIDER_URL: ${LAYER1_WS_PROVIDER_URL}
       LAYER1_KEY_PATH: /layer1/key
       INIT_LAYER1_KEY: ${INIT_LAYER1_KEY}
-      LASTEST_TOPUP_HEIGHT: 10005446
+      LASTEST_TOPUP_HEIGHT: 18896355
       TEA_ID: "${TEA_ID}"
       MACHINE_OWNER: "${MACHINE_OWNER}"
       STARTUP_PROOF: "${STARTUP_PROOF}"
