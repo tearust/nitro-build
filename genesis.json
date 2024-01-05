@@ -1,46 +1,46 @@
 {
 	"network": "alpha",
 	"contract_addresses": {
-		"lock": "0x5CE9DFa79246b3B53586A8884b100091cADa13bc",
-		"storage": "0x577A5e45d51Ff1F10951dDc8D6F385B1417E0879",
-		"maintainer": "0x3967604f6A11aCB0566b24f82BD29a117aEf296C",
-		"token_vesting": "0xa3b596624C998BEB849663731759AB4832451459",
-		"erc721": "0x52F32bB71EffA1d094bD9a2cb987abbe6B58d78a"
+		"lock": "0x64505BfCD2c6A232a177351097236aF269350f5C",
+		"storage": "0xe81F29F9a52aCCf92c7B95FD71915bb69d0A004C",
+		"maintainer": "0x63878Cb46847adE9F4a6CD69865b585869c04E41",
+		"token_vesting": "0xbd6D4f56b59e45ed25c52Eab7EFf2c626e083db9",
+		"erc721": "0x70fe3643Bf76D7ba74b1eB8e6969de3a49f7A314"
 	},
-	"tappstore_id": "0xfA88f8350A0d27B473450dFa54A80f5276658aD4",
+	"tappstore_id": "0x0FB8ae64DF4D374F91827Cacf64520E9674543c7",
 	"usdt_address": "0xaa8e23fb1079ea71e0a56f48a2aa51851d8433d0",
 	"chain_id": 11155111,
 	"mining_startup_nodes": [
 		{
 			"machine_id": "df38cb4f12479041c8e8d238109ef2a150b017f382206e24fee932e637c2db7b",
 			"seat_id": 1,
-			"conn_id": "12D3KooWKUd6bwsqNKzFgeruvk7pNSMUoBcrUKKU9Djqd1A3H9q8"
+			"conn_id": "12D3KooWEiFxosrdXqkKUmdTE1qQbkS618MaaWnj6gYdkRodnzqp"
 		},
 		{
 			"machine_id": "c7e016fad0796bb68594e49a6ef1942cf7e73497e69edb32d19ba2fab3696596",
 			"seat_id": 2,
-			"conn_id": "12D3KooWKExtVZ4AY1L3ZkMjihkf7tYPBQQ1Z3kTbUjwBGPrrQa3"
+			"conn_id": "12D3KooWHJq9p9HirGXSd112Gjrnqh31rRpGvtpjZbA9x3QMQwWw"
 		},
 		{
 			"machine_id": "2754d7e9c73ced5b302e12464594110850980027f8f83c469e8145eef59220b6",
 			"seat_id": 3,
-			"conn_id": "12D3KooWBBw6uEp9tmMZorkJ2151Nq64EE3D7PTmHFZva6KUdp68"
+			"conn_id": "12D3KooWHW1ZQ5A9sPWfCivjBdK9Lafr1YxAr79aSyvTAfbVtJqp"
 		},
 		{
 			"machine_id": "c9380fde1ba795fc656ab08ab4ef4482cf554790fd3abcd4642418ae8fb5fd52",
 			"seat_id": 4,
-			"conn_id": "12D3KooWA8PKZg2Ywh1dWhQ1qoQyK2ZAFazTrDXZNecfuHykTMUk"
+			"conn_id": "12D3KooWAGEEToYtYLrgU5mVm1Q2R1ohcx9zyZQfwy4h7rp3Qmvf"
 		},
 		{
 			"machine_id": "bd1c0ec25a96172791fe16c28323ceb0c515f17bcd11da4fb183ffd7e6fbb769",
 			"seat_id": 5,
-			"conn_id": "12D3KooWT3gQVdYkDEscGPBHvoWAgiYzdZXeJVdJ2CxXbH8JN5aN"
+			"conn_id": "12D3KooWJFgzu63NonpnHqc3df5Ew6z6cpjYR6bjMb9uHgq6ixDs"
 		}
 	],
 	"enclave_pcrs": [
 		[
 			"PCR0",
-			"f12edd11c14ae12580a3fee972d041bf6772e016b848b4a00cde2e55ee5a93267b32b8692eacae0d8b4d73b0ed88afb9"
+			"22ada545152cc4a4b126d8c700409d50ecf73db6cd4e7167ddfc05538f54747340a4df5a9cff56e78f5c3868c17a7ed9"
 		],
 		[
 			"PCR1",
@@ -48,7 +48,7 @@
 		],
 		[
 			"PCR2",
-			"90a9264d9493187c435c5f5a30400738fb500a81322158e7236403cebee8170482c3b57cbe3d829aae7e0bbc9a422249"
+			"751fe686df5550621c2c66eb29427069b49584ad0b6f52e62e24c01ff09fdef83148231fdbafafaeaaf516e1202b94f2"
 		]
 	]
 }
