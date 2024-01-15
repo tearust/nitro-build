@@ -83,7 +83,7 @@ bash -c "$(curl -H "Cache-Control: no-cache" -fsSL https://raw.githubusercontent
 
 Or using the following command without prompting:
 ```
-bash -c "$(curl -H "Cache-Control: no-cache" -fsSL https://raw.githubusercontent.com/tearust/nitro-build/main/install.sh)" "" "0x0000000000000000000000000000000000000000000000000000000000000000" "0xbd6D4f56b59e45ed25c52Eab7EFf2c626e083db9" "ap-northeast-2"
+bash -c "$(curl -H "Cache-Control: no-cache" -fsSL https://raw.githubusercontent.com/tearust/nitro-build/main/install.sh)" "" "0x0000000000000000000000000000000000000000000000000000000000000000" "0xbd6D4f56b59e45ed25c52Eab7EFf2c626e083db9" "ap-northeast-2" "<your startup proof>"
 ```
 
 The above command uses the region code of `ap-northeast-2` but you should change this according to the region you use (i.e. an Oregon server will have a `us-west-2` region code).
@@ -101,8 +101,8 @@ Then simply run the following script to start the node with parts both inside an
 ```
 or run the following command if you want to change settings when running:
 ```
-./start.sh "{YOUR_MACHINE_ID}" "{YOUR_MACHINE_OWNER}" "{REGION_CODE}"
+./start.sh "{YOUR_MACHINE_ID}" "{YOUR_MACHINE_OWNER}" "{REGION_CODE}" "{STARTUP_PROOF}"
 ```
-Note that replace your real machine_id, machine_owner and region_code for the above command. 
-e.g. ``` ./start.sh "0x0000000000000000000000000000000000000000000000000000000000000000" "0xbd6D4f56b59e45ed25c52Eab7EFf2c626e083db9" "ap-northeast-2" ```
+Note that replace your real machine_id, machine_owner, region_code and startup_proof for the above command. 
+e.g. ``` ./start.sh "0x0000000000000000000000000000000000000000000000000000000000000000" "0xbd6D4f56b59e45ed25c52Eab7EFf2c626e083db9" "ap-northeast-2" "0x1234321" ```
 
