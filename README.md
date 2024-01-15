@@ -13,23 +13,23 @@ First you should create new IAM Policy to allow use of the KMS key that we defin
                 "kms:GenerateDataKey",
                 "kms:GenerateRandom"
             ],
-            "Resource": "arn:aws:kms:*:580177110170:key/f66b0a1b-28c7-49a1-82c8-70094dd7e45b"
+            "Resource": "arn:aws:kms:ap-northeast-2:580177110170:key/d457ce32-1226-420b-9e81-bc32c49fe2da"
         }
     ]
 }
 ```
 After creatiing the policy you should see a new policy like this:
 
-<img width="1301" alt="图片" src="https://user-images.githubusercontent.com/3713930/227701234-367b10f5-7f96-4b4c-b8ed-bd2143b2b62c.png">
+<img width="1198" alt="图片" src="https://github.com/tearust/nitro-build/assets/3713930/f4f47428-1014-499b-8d79-d1ead4307c3e">
 
 For more information please read this [AWS docs](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html#cross-account-key-policy).
 
 ### Create Role
 Open the "IAM -> Roles" page and click the "Create role" button to create a new IAM role, then select the choice box in the first step like:
-<img width="1574" alt="图片" src="https://user-images.githubusercontent.com/3713930/227701503-3d264683-71b7-4f72-a317-02c50b29db72.png">
+<img width="1531" alt="图片" src="https://github.com/tearust/nitro-build/assets/3713930/efb900bd-9e35-47eb-b1e6-13d820e420fa">
 
 In the second step we suggest you input "key" as filter word and select "AWSKeyManagementServicePowerUser" and the IAM policy we created before like:
-<img width="1560" alt="图片" src="https://user-images.githubusercontent.com/3713930/227701664-21289a5b-d6d8-4188-bdf9-a5db7b91d230.png">
+<img width="1270" alt="图片" src="https://github.com/tearust/nitro-build/assets/3713930/b7a65973-b67b-4796-9590-e15d80d0b5a8">
 
 Finally, enter the new role name and remember it for future use.
 
@@ -58,14 +58,14 @@ To ensure a successful instance launch, pay closse attention to the following pa
 3. Use the security group we updated (created) above:
 <img width="938" alt="图片" src="https://user-images.githubusercontent.com/3713930/227703076-21f6153f-3d7d-40ab-b902-1f073b8f9ea1.png">
 
-4. (optinal) It's better to increase the volume size from 8G to 30G:
-<img width="936" alt="图片" src="https://user-images.githubusercontent.com/3713930/227703175-778599fa-5b13-4c66-974e-64eceb7995f8.png">
+4. Increase the volume size from 8G to 200G:
+<img width="935" alt="图片" src="https://github.com/tearust/nitro-build/assets/3713930/9ccd12ce-a9b7-4d51-8e1b-c9cc1e4811f1">
 
 5. In the "Advanced details" tab, use the IAM role we created above:
-<img width="931" alt="图片" src="https://user-images.githubusercontent.com/3713930/227703322-136398dc-28fb-48b2-b7c9-964ef45ba595.png">
+<img width="940" alt="图片" src="https://github.com/tearust/nitro-build/assets/3713930/031c6a8a-e6b7-4364-9fa3-e70d1c91f198">
 
 6. In the "advanced details" tab set "Nitro Enclave" as enabled
-<img width="745" alt="图片" src="https://user-images.githubusercontent.com/3713930/227703431-d6763256-b3a3-4d08-a86a-42856cf824b7.png">
+<img width="865" alt="图片" src="https://github.com/tearust/nitro-build/assets/3713930/ab72cc7e-5e8c-4920-b117-55af17e2543e">
 
 After successfully launching the EC2 instance, you can access it and proceed with the next steps of the tutorial.
 
