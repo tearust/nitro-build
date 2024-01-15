@@ -3,9 +3,11 @@
 TEA_ID=$1
 MACHINE_OWNER=$2
 AWS_REGION=$3
+STARTUP_PROOF=$4
 : ${TEA_ID:=""}
 : ${MACHINE_OWNER:=""}
 : ${AWS_REGION:=""}
+: ${STARTUP_PROOF:=""}
 
 RESOURCE_DIR=$HOME/nitro-build
 
@@ -47,6 +49,14 @@ confirm_aws_region() {
   echo "aws region accepted" 
 }
 
+confirm_startup_proof() {
+  echo "please enter your startup proof..."
+
+  read -r STARTUP_PROOF </dev/tty
+
+  echo "aws region accepted" 
+}
+
 pre_settings() {
   sudo yum -y install git || true
 
@@ -79,7 +89,8 @@ pre_settings() {
       echo "MACHINE_OWNER=$MACHINE_OWNER" >> $ENV_FILE
 
 			confirm_aws_region
-      echo "AWS_REGION=$AWS_REGION\nLIBP2P_BOOTNODES=$LIBP2P_BOOTNODES\nNITRO_KEY_ID=$NITRO_KEY_ID\n" >> $ENV_FILE
+      confirm_startup_proof
+      echo "AWS_REGION=$AWS_REGION\nLIBP2P_BOOTNODES=$LIBP2P_BOOTNODES\nNITRO_KEY_ID=$NITRO_KEY_ID\nSTARTUP_PROOF=$STARTUP_PROOF\n" >> $ENV_FILE
 
 			echo ""
     fi
