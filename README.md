@@ -41,11 +41,6 @@ Select "EC2 -> Security Groups" page and choose a security group you want to mod
 These input ports will be filtered after the node is started.
 
 ### Create an EC2 instance
-First select the region you want your EC2 instance to be deployed to.
-
-<img width="376" alt="图片" src="https://user-images.githubusercontent.com/3713930/227702512-8949e24c-c23f-478d-ad66-73246fe9d09e.png">
-
-In the above image we choose the "Asia Pacific (Seoul)" region and the region code is "ap-northeast-2". Please keep this region code in mind because this the code will be used as the last parameter in "install" and "start" scripts below.
 
 To ensure a successful instance launch, pay closse attention to the following parts in the 'Launch an Instance' steps：
 
@@ -83,10 +78,8 @@ bash -c "$(curl -H "Cache-Control: no-cache" -fsSL https://raw.githubusercontent
 
 Or using the following command without prompting:
 ```
-bash -c "$(curl -H "Cache-Control: no-cache" -fsSL https://raw.githubusercontent.com/tearust/nitro-build/main/install.sh)" "" "0x0000000000000000000000000000000000000000000000000000000000000000" "0xbd6D4f56b59e45ed25c52Eab7EFf2c626e083db9" "ap-northeast-2" "<your startup proof>"
+bash -c "$(curl -H "Cache-Control: no-cache" -fsSL https://raw.githubusercontent.com/tearust/nitro-build/main/install.sh)" "" "0x0000000000000000000000000000000000000000000000000000000000000000" "0xbd6D4f56b59e45ed25c52Eab7EFf2c626e083db9" "<your startup proof>"
 ```
-
-The above command uses the region code of `ap-northeast-2` but you should change this according to the region you use (i.e. an Oregon server will have a `us-west-2` region code).
 
 ### Start
 Enter into the working directory of the "nitro-build" folder created automatically in the preparation step:
@@ -101,8 +94,8 @@ Then simply run the following script to start the node with parts both inside an
 ```
 or run the following command if you want to change settings when running:
 ```
-./start.sh "{YOUR_MACHINE_ID}" "{YOUR_MACHINE_OWNER}" "{REGION_CODE}" "{STARTUP_PROOF}"
+./start.sh "{YOUR_MACHINE_ID}" "{YOUR_MACHINE_OWNER}" "{STARTUP_PROOF}"
 ```
-Note that replace your real machine_id, machine_owner, region_code and startup_proof for the above command. 
-e.g. ``` ./start.sh "0x0000000000000000000000000000000000000000000000000000000000000000" "0xbd6D4f56b59e45ed25c52Eab7EFf2c626e083db9" "ap-northeast-2" "0x1234321" ```
+Note that replace your real machine_id, machine_owner and startup_proof for the above command. 
+e.g. ``` ./start.sh "0x0000000000000000000000000000000000000000000000000000000000000000" "0xbd6D4f56b59e45ed25c52Eab7EFf2c626e083db9" "0x1234321" ```
 

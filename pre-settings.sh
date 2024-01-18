@@ -2,11 +2,9 @@
 
 TEA_ID=$1
 MACHINE_OWNER=$2
-AWS_REGION=$3
-STARTUP_PROOF=$4
+STARTUP_PROOF=$3
 : ${TEA_ID:=""}
 : ${MACHINE_OWNER:=""}
-: ${AWS_REGION:=""}
 
 confirm_tea_id() {
   echo "please enter your tea id...(hex encoded, ie. 0x0000000000000000000000000000000000000000000000000000000000000000)"
@@ -38,10 +36,10 @@ confirm_machine_owner() {
   fi
 }
 
-confirm_aws_region() {
-  echo "please enter your aws ec2 instance located region...(ie. ap-northeast-2)"
+confirm_startup_proof() {
+  echo "please enter your startup proof..."
 
-  read -r AWS_REGION </dev/tty
+  read -r STARTUP_PROOF </dev/tty
 
   echo "aws region accepted" 
 }
@@ -65,9 +63,9 @@ echo "clone resources completed"
 source server.env
 ENV_FILE=$RESOURCE_DIR/.env
 
-if [[ -n "$TEA_ID" && -n "$MACHINE_OWNER" && -n "$AWS_REGION" && -n "$LIBP2P_BOOTNODES" && -n "$NITRO_KEY_ID" ]]; then
+if [[ -n "$TEA_ID" && -n "$MACHINE_OWNER" && -n "$LIBP2P_BOOTNODES" && -n "$NITRO_KEY_ID" ]]; then
   echo "begin to init env file through command line arguments"
-  printf "TEA_ID=$TEA_ID\nMACHINE_OWNER=$MACHINE_OWNER\nAWS_REGION=$AWS_REGION\nLIBP2P_BOOTNODES=$LIBP2P_BOOTNODES\nNITRO_KEY_ID=$NITRO_KEY_ID\nSTARTUP_PROOF=$STARTUP_PROOF\n" > $ENV_FILE
+  printf "TEA_ID=$TEA_ID\nMACHINE_OWNER=$MACHINE_OWNER\nLIBP2P_BOOTNODES=$LIBP2P_BOOTNODES\nNITRO_KEY_ID=$NITRO_KEY_ID\nSTARTUP_PROOF=$STARTUP_PROOF\n" > $ENV_FILE
 else
   if [ ! -f "$ENV_FILE" ]; then
     echo "begin to init env file from prompt"
@@ -78,10 +76,9 @@ else
     confirm_machine_owner
     echo "MACHINE_OWNER=$MACHINE_OWNER" >> $ENV_FILE
 
-		confirm_aws_region
-    echo "AWS_REGION=$AWS_REGION\nLIBP2P_BOOTNODES=$LIBP2P_BOOTNODES\nNITRO_KEY_ID=$NITRO_KEY_ID\n" >> $ENV_FILE
+    echo "LIBP2P_BOOTNODES=$LIBP2P_BOOTNODES\nNITRO_KEY_ID=$NITRO_KEY_ID\n" >> $ENV_FILE
 
-    # confirm startup proof later
+    confirm_startup_proof
     echo "STARTUP_PROOF=$STARTUP_PROOF" >> $ENV_FILE
 
 	echo ""

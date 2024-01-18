@@ -27,7 +27,7 @@ services:
     environment:
       ENCLAVE_CID: 6
       NITRO_PROXY_PORT: 8001
-      AWS_REGION: ${AWS_REGION}
+      AWS_REGION: "ap-northeast-2"
       NITRO_KEY_ID: ${NITRO_KEY_ID}
       LOG_FILE: /log/output.log
       NITRO_KEYS_PATH: /nitro/key

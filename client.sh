@@ -7,7 +7,7 @@ docker-compose -f ipfs.yaml up --no-recreate -d
 if [ -n $1 ] && [ $1 = "a" ]; then
 	ENCLAVE_CID=6 \
 		NITRO_PROXY_PORT=8001 \
-		AWS_REGION=$AWS_REGION \
+		AWS_REGION="ap-northeast-2" \
 		NITRO_KEY_ID=$NITRO_KEY_ID \
 	  NITRO_KEYS_PATH=.nitro/key	\
 		GENESIS_CONFIG_PATH=genesis.json \
@@ -33,7 +33,7 @@ if [ -n $1 ] && [ $1 = "a" ]; then
 else
 	ENCLAVE_CID=6 \
 		NITRO_PROXY_PORT=8001 \
-		AWS_REGION=$AWS_REGION \
+		AWS_REGION=ap-northeast-2 \
 		NITRO_KEY_ID=$NITRO_KEY_ID \
 	  NITRO_KEYS_PATH=.nitro/key	\
 		GENESIS_CONFIG_PATH=genesis.json \
