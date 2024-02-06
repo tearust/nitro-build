@@ -45,6 +45,9 @@ services:
       RUST_BACKTRACE: full
       MALLOC_CONF: prof:true
 
+      ENABLE_SOCKETIO: "true"
+      SOCKETIO_HTTP_BASE_URL: http://localhost:4006
+
       WAIT_HOSTS: localhost:5001
       WAIT_TIMEOUT: 300
       WAIT_SLEEP_INTERVAL: 5
