@@ -47,6 +47,7 @@ services:
       LIBP2P_VERSION: 0.15
       STATE_MAGIC_NUMBER: 200
       APPLY_VALIDATOR: "true"
+      FIRST_STARTUP_INIT_MODE: "false"
       PERSIST_PATH: /tokenstate/persist
       IPFS_URL_BASE: http://localhost:5001
       RUST_BACKTRACE: full
