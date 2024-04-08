@@ -23,6 +23,6 @@ echo "start enclave runtime completed"
 
 echo "begin to start client..."
 docker-compose -f docker-compose-b.yaml down
-docker rmi tearust/parent-instance-client:beta-3.1 || true
+docker rmi tearust/parent-instance-client:beta-4.0 || true
 docker-compose -f docker-compose-b.yaml up -d
 echo "start client completed"
