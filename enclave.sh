@@ -17,8 +17,8 @@ function console_print() {
 if [ $1 = "docker" ]; then
   DOCKER_USER=$2
   : ${DOCKER_USER:="tearust"}
-  docker rmi $DOCKER_USER/runtime:beta-4.10
-  sudo nitro-cli build-enclave --docker-uri $DOCKER_USER/runtime:beta-4.10 --output-file enclave_app.eif
+  docker rmi $DOCKER_USER/runtime:beta-4.11
+  sudo nitro-cli build-enclave --docker-uri $DOCKER_USER/runtime:beta-4.11 --output-file enclave_app.eif
   echo "current docker images:"
   docker images
 elif [ $1 = "debug" ]; then
