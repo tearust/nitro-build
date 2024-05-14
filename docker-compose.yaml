@@ -14,7 +14,7 @@ services:
     command: sh -c "/ipfs/config/start_ipfs daemon --migrate --enable-pubsub-experiment"
 
   parent-instance-client:
-    image: tearust/parent-instance-client:beta-4.13
+    image: tearust/parent-instance-client:beta-4.14
     container_name: client
     network_mode: host
     volumes:
